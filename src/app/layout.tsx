@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Serif_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Instrument_Serif, Manrope } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { PreviewBanner } from "@/components/layout/PreviewBanner";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
 
-const dmSerif = DM_Serif_Display({
-  variable: "--font-dm-serif",
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
   subsets: ["latin"],
   weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -29,14 +29,13 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.consultant }],
   creator: siteConfig.name,
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
+  robots: siteConfig.noindex
+    ? {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      }
+    : { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#142431",
+  themeColor: "#172526",
   width: "device-width",
   initialScale: 1,
 };
@@ -74,10 +73,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${plusJakarta.variable} ${dmSerif.variable} h-full antialiased`}
+      className={`${manrope.variable} ${instrument.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-ivory text-charcoal">
-        <PreviewBanner />
+      <body className="flex min-h-full flex-col bg-ivory text-ink">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -9,25 +9,78 @@ import { industries } from "@/data/industries";
 export const metadata: Metadata = {
   title: "Industry Expertise | Nuclear, Construction & Growing Businesses",
   description:
-    "HR consulting expertise relevant to nuclear and energy environments, construction workforces, and small to midsize businesses across sectors.",
+    "HR consulting experience across nuclear and energy environments, construction workforces, and growing small to midsize businesses.",
 };
 
 export default function IndustriesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Industry Expertise"
-        title="HR expertise for complex industries."
-        description="Organizations in technically demanding industries require strong leadership, careful workforce planning, and thoughtful employee relations. These are fields of professional expertise and potential service — not claims of named current client engagements."
+        tone="forest"
+        eyebrow="Industries"
+        title={
+          <>
+            HR expertise for
+            <br />
+            <span className="font-display-italic text-sage">
+              complex environments.
+            </span>
+          </>
+        }
+        description="Organizations in demanding industries need strong leadership, careful workforce planning, and thoughtful employee relations."
       />
 
       {industries.map((industry, index) => {
         const reverse = index % 2 === 1;
+        const fullBleed = index === 1;
+
+        if (fullBleed) {
+          return (
+            <section
+              key={industry.id}
+              id={industry.id}
+              className="relative scroll-mt-28 min-h-[70vh] overflow-hidden"
+            >
+              <Image
+                src={industry.image}
+                alt={industry.imageAlt}
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-ink/70" />
+              <Container className="relative flex min-h-[70vh] items-center py-20">
+                <Reveal className="max-w-2xl text-ivory">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage">
+                    {industry.eyebrow}
+                  </p>
+                  <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.08]">
+                    {industry.title}
+                  </h2>
+                  <p className="mt-5 text-base leading-relaxed text-ivory/75">
+                    {industry.intro}
+                  </p>
+                  <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+                    {industry.points.map((point) => (
+                      <li key={point.title} className="border-t border-white/20 pt-4">
+                        <h3 className="font-display text-xl">{point.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-ivory/65">
+                          {point.description}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </Container>
+            </section>
+          );
+        }
+
         return (
           <section
             key={industry.id}
             id={industry.id}
-            className={`scroll-mt-32 py-16 sm:py-24 ${
+            className={`scroll-mt-28 py-16 sm:py-24 ${
               reverse ? "bg-white" : "bg-ivory"
             }`}
           >
@@ -38,7 +91,7 @@ export default function IndustriesPage() {
                 }`}
               >
                 <Reveal>
-                  <div className="relative aspect-[5/4] overflow-hidden border border-sand">
+                  <div className="relative aspect-[5/4] overflow-hidden bg-stone">
                     <Image
                       src={industry.image}
                       alt={industry.imageAlt}
@@ -46,30 +99,25 @@ export default function IndustriesPage() {
                       sizes="(max-width: 1024px) 100vw, 48vw"
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-navy/35 via-transparent to-transparent" />
                   </div>
                 </Reveal>
-
                 <Reveal delay={0.1}>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-forest">
                     {industry.eyebrow}
                   </p>
-                  <h2 className="mt-4 font-display text-[clamp(1.9rem,3.5vw,3rem)] leading-[1.08] text-navy">
+                  <h2 className="mt-4 font-display text-[clamp(1.9rem,3.5vw,3rem)] leading-[1.08] text-ink">
                     {industry.title}
                   </h2>
-                  <p className="mt-5 text-base leading-relaxed text-slate">
+                  <p className="mt-5 text-base leading-relaxed text-muted">
                     {industry.intro}
                   </p>
                   <ul className="mt-8 space-y-5">
                     {industry.points.map((point) => (
-                      <li
-                        key={point.title}
-                        className="border-l-2 border-sage/50 pl-4"
-                      >
-                        <h3 className="font-display text-xl text-navy">
+                      <li key={point.title} className="border-l-2 border-sage pl-4">
+                        <h3 className="font-display text-xl text-ink">
                           {point.title}
                         </h3>
-                        <p className="mt-1.5 text-sm leading-relaxed text-slate">
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted">
                           {point.description}
                         </p>
                       </li>
@@ -81,22 +129,6 @@ export default function IndustriesPage() {
           </section>
         );
       })}
-
-      <section className="border-y border-sand bg-white py-14">
-        <Container>
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">
-              Important Note
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-slate">
-              Industry sections describe relevant fields of expertise and the
-              types of people challenges common in those environments. They do
-              not imply current named clients, partnerships, nuclear
-              certifications, or safety credentials.
-            </p>
-          </Reveal>
-        </Container>
-      </section>
 
       <CTABanner
         title="Discuss the people challenges in your industry."

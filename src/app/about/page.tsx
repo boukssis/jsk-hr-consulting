@@ -22,43 +22,29 @@ const expertise = [
   "Career transition coaching",
 ];
 
-const reasons = [
-  {
-    title: "Senior consulting perspective",
-    description:
-      "Thoughtful guidance shaped by experience working with organizations and people through complex workplace situations.",
-  },
-  {
-    title: "People-first philosophy",
-    description:
-      "A clear belief that employees deserve respect, dignity, and integrity in every workplace interaction.",
-  },
-  {
-    title: "Flexible support for growing organizations",
-    description:
-      "Consulting sized for businesses that need experienced HR help without building a full internal department.",
-  },
-  {
-    title: "Discretion and professionalism",
-    description:
-      "Sensitive people matters are approached with care, confidentiality, and steady judgment.",
-  },
-];
+const values = ["Respect", "Dignity", "Integrity"] as const;
 
 export default function AboutPage() {
   return (
     <>
       <PageHero
+        tone="light"
         eyebrow="About June"
-        title="Experience you can trust. A people-first approach."
-        description="June Speranza Kerr provides senior HR consulting through JSK Human Resources Consulting, LLC — helping organizations navigate workplace challenges with clarity and care."
+        title={
+          <>
+            The experience behind
+            <br />
+            <span className="font-display-italic text-forest">the advice.</span>
+          </>
+        }
+        description={`${siteConfig.consultant} provides senior HR consulting through ${siteConfig.name} — helping organizations navigate workplace challenges with clarity and care.`}
       />
 
-      <section className="bg-ivory py-16 sm:py-24">
+      <section className="bg-white py-16 sm:py-24">
         <Container>
-          <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <Reveal>
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden border border-sand bg-sand/20">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-stone">
                 <Image
                   src="/june-speranza-kerr.jpg"
                   alt="Professional portrait of June Speranza Kerr"
@@ -68,161 +54,114 @@ export default function AboutPage() {
                   preload
                 />
               </div>
-              <div className="mx-auto mt-6 max-w-md border border-sand bg-white p-5">
-                <p className="font-display text-2xl text-navy">
-                  {siteConfig.consultant}
-                </p>
-                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-sage">
-                  {siteConfig.title}
-                </p>
-                <dl className="mt-5 space-y-3 text-sm text-slate">
-                  <div className="flex justify-between gap-4 border-b border-sand/70 pb-2">
-                    <dt>Business</dt>
-                    <dd className="text-right text-navy">{siteConfig.name}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4 border-b border-sand/70 pb-2">
-                    <dt>Founded</dt>
-                    <dd className="text-navy">{siteConfig.founded}</dd>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <dt>Location</dt>
-                    <dd className="text-right text-navy">
-                      {siteConfig.locationShort}
-                    </dd>
-                  </div>
-                </dl>
-              </div>
+              <dl className="mx-auto mt-6 max-w-md space-y-3 border border-ink/10 p-5 text-sm">
+                <div className="flex justify-between gap-4 border-b border-ink/10 pb-3">
+                  <dt className="text-muted">Role</dt>
+                  <dd className="text-ink">{siteConfig.title}</dd>
+                </div>
+                <div className="flex justify-between gap-4 border-b border-ink/10 pb-3">
+                  <dt className="text-muted">Founded</dt>
+                  <dd className="text-ink">{siteConfig.founded}</dd>
+                </div>
+                <div className="flex justify-between gap-4">
+                  <dt className="text-muted">Location</dt>
+                  <dd className="text-right text-ink">
+                    {siteConfig.locationShort}
+                  </dd>
+                </div>
+              </dl>
             </Reveal>
 
             <div className="space-y-10">
               <Reveal delay={0.08}>
-                <h2 className="font-display text-3xl text-navy sm:text-4xl">
-                  Professional biography
+                <h2 className="font-display text-3xl text-ink sm:text-4xl">
+                  Professional focus
                 </h2>
-                <div className="mt-5 space-y-4 text-base leading-relaxed text-slate">
+                <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
                   <p>
-                    June Speranza Kerr is a Senior HR Consultant and the founder
-                    of {siteConfig.name}, based in {siteConfig.locationShort}.
-                    Since founding the practice in {siteConfig.founded}, she has
-                    focused on providing experienced human resources guidance to
-                    organizations that may not have the resources or budget for a
-                    complete in-house HR department.
+                    June is the founder of {siteConfig.name}, based in{" "}
+                    {siteConfig.locationShort}. Since {siteConfig.founded}, she
+                    has focused on providing experienced human resources guidance
+                    to organizations that may not have the resources or budget
+                    for a complete in-house HR department.
                   </p>
                   <p>
                     Her work supports small and midsize organizations as they
                     strengthen people practices, develop leaders, and navigate
-                    workplace challenges with clarity. June approaches each
-                    engagement with professionalism, discretion, and a genuine
-                    commitment to treating people well.
-                  </p>
-                  <p>
-                    Publicly stated areas of professional focus include senior HR
-                    consulting, nuclear and construction industry experience,
-                    employee concerns, and career transition coaching.
+                    workplace challenges with clarity.
                   </p>
                 </div>
               </Reveal>
 
               <Reveal delay={0.12}>
-                <h2 className="font-display text-3xl text-navy">
-                  Philosophy & approach
-                </h2>
-                <p className="mt-5 text-base leading-relaxed text-slate">
-                  Employees are valuable organizational resources. They deserve
-                  to be treated with respect, dignity, and integrity. That belief
-                  informs how JSK advises leaders — encouraging clear
-                  communication, fair processes, and people practices that
-                  support both organizational goals and human dignity.
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.16}>
-                <h2 className="font-display text-3xl text-navy">Key expertise</h2>
-                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                <ul className="grid gap-3 sm:grid-cols-2">
                   {expertise.map((item) => (
                     <li
                       key={item}
-                      className="border border-sand bg-white px-4 py-3 text-sm text-navy"
+                      className="border-l-2 border-sage pl-4 text-sm font-medium text-ink"
                     >
-                      <span className="mr-2 text-sage">▸</span>
                       {item}
                     </li>
                   ))}
                 </ul>
               </Reveal>
-            </div>
-          </div>
-        </Container>
-      </section>
 
-      <section className="bg-white py-16 sm:py-24">
-        <Container>
-          <Reveal>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">
-              Why Work With JSK
-            </p>
-            <h2 className="mt-4 max-w-2xl font-display text-[clamp(1.9rem,3.5vw,3rem)] text-navy">
-              A boutique consulting relationship built on trust.
-            </h2>
-          </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {reasons.map((reason, index) => (
-              <Reveal key={reason.title} delay={0.06 * index}>
-                <article className="h-full border border-sand p-7">
-                  <span className="font-display text-sm text-sage">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-4 font-display text-2xl text-navy">
-                    {reason.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate">
-                    {reason.description}
-                  </p>
-                </article>
+              <Reveal delay={0.16}>
+                <div className="flex flex-wrap gap-4">
+                  <a
+                    href={siteConfig.linkedIn.personal}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-ink transition hover:text-forest"
+                  >
+                    <LinkedInIcon />
+                    June&apos;s LinkedIn
+                  </a>
+                  <a
+                    href={siteConfig.linkedIn.company}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-ink transition hover:text-forest"
+                  >
+                    <LinkedInIcon />
+                    Company LinkedIn
+                  </a>
+                </div>
+                <div className="mt-6">
+                  <Button href="/contact">Schedule a Consultation</Button>
+                </div>
               </Reveal>
-            ))}
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-ivory py-16">
+      <section className="bg-deep py-20 sm:py-28">
         <Container>
-          <Reveal className="flex flex-col items-start justify-between gap-8 border border-sand bg-white p-8 sm:flex-row sm:items-center sm:p-10">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">
-                Connect
-              </p>
-              <h2 className="mt-3 font-display text-3xl text-navy">
-                Continue the conversation on LinkedIn
-              </h2>
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate">
-                Follow June&apos;s professional profile or the company page for
-                updates and context about her consulting practice.
-              </p>
+          <Reveal className="mx-auto max-w-4xl text-center">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage">
+              Philosophy
+            </p>
+            <h2 className="mt-5 font-display text-[clamp(2rem,4vw,3.2rem)] text-ivory">
+              Employees deserve workplaces built on lasting values.
+            </h2>
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+              {values.map((value) => (
+                <div
+                  key={value}
+                  className="border border-white/15 px-4 py-10"
+                >
+                  <p className="font-display text-3xl text-sage sm:text-4xl">
+                    {value}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div className="flex flex-col gap-3 sm:items-end">
-              <a
-                href={siteConfig.linkedIn.personal}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-navy transition hover:text-sage"
-              >
-                <LinkedInIcon />
-                June&apos;s LinkedIn
-              </a>
-              <a
-                href={siteConfig.linkedIn.company}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-navy transition hover:text-sage"
-              >
-                <LinkedInIcon />
-                Company LinkedIn
-              </a>
-              <Button href="/contact" className="mt-2">
-                Schedule a Consultation
-              </Button>
-            </div>
+            <p className="mx-auto mt-10 max-w-2xl text-base leading-relaxed text-ivory/70">
+              That belief informs how JSK advises leaders — encouraging clear
+              communication, fair processes, and people practices that support
+              both organizational goals and human dignity.
+            </p>
           </Reveal>
         </Container>
       </section>

@@ -1,29 +1,28 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const steps = [
   {
     number: "01",
-    title: "Initial Conversation",
+    title: "Understand",
     description:
-      "Understand organizational priorities, current challenges, and what meaningful progress would look like.",
+      "Clarify priorities, challenges, and what meaningful progress would look like for your organization.",
   },
   {
     number: "02",
-    title: "Assessment",
+    title: "Assess",
     description:
-      "Explore the existing workforce, processes, and opportunities with a practical, people-centered lens.",
+      "Review workforce realities, processes, and opportunities with a practical, people-centered lens.",
   },
   {
     number: "03",
-    title: "Tailored Strategy",
+    title: "Strategize",
     description:
-      "Develop a focused approach aligned with your business realities — not a one-size-fits-all template.",
+      "Shape a focused approach aligned with your business context — not a one-size-fits-all template.",
   },
   {
     number: "04",
-    title: "Implementation Support",
+    title: "Support",
     description:
       "Help put the plan into action and adapt as needs evolve through the engagement.",
   },
@@ -31,33 +30,34 @@ const steps = [
 
 export function HowWeWork() {
   return (
-    <section className="bg-white py-20 sm:py-28">
+    <section className="bg-stone/50 py-20 sm:py-28">
       <Container>
-        <SectionHeading
-          eyebrow="How We Work"
-          title="A clear path from conversation to action."
-          description="This proposed engagement framework outlines how consulting support can unfold. Each engagement is shaped around the organization's context and priorities."
-        />
+        <Reveal className="max-w-2xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-forest">
+            Working Together
+          </p>
+          <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.3rem)] leading-[1.08] text-ink">
+            A clear path from conversation to action.
+          </h2>
+        </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-14 grid gap-0 md:grid-cols-4">
           {steps.map((step, index) => (
-            <Reveal key={step.number} delay={0.07 * index}>
-              <article className="relative h-full border border-sand bg-ivory/40 p-7">
-                <span className="font-display text-4xl text-sage/80">
+            <Reveal key={step.number} delay={0.06 * index}>
+              <article
+                className={`h-full border-ink/10 px-0 py-6 md:border-l md:px-6 md:py-0 ${
+                  index === 0 ? "md:border-l-0 md:pl-0" : ""
+                }`}
+              >
+                <span className="font-display text-3xl text-sage">
                   {step.number}
                 </span>
-                <h3 className="mt-6 font-display text-2xl text-navy">
+                <h3 className="mt-5 font-display text-2xl text-ink">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate">
+                <p className="mt-3 text-sm leading-relaxed text-muted">
                   {step.description}
                 </p>
-                {index < steps.length - 1 ? (
-                  <span
-                    className="pointer-events-none absolute -right-3 top-10 hidden h-px w-6 bg-sage/40 xl:block"
-                    aria-hidden
-                  />
-                ) : null}
               </article>
             </Reveal>
           ))}

@@ -33,7 +33,7 @@ export const contactFormSchema = z.object({
     .trim()
     .min(20, "Please share a bit more about what you need (at least 20 characters).")
     .max(2000, "Message is too long."),
-  website: z.string().max(0, "Spam detected.").optional().or(z.literal("")),
+  website: z.string().max(0, "Unable to process this submission.").optional().or(z.literal("")),
 });
 
 export type ContactFormInput = z.infer<typeof contactFormSchema>;

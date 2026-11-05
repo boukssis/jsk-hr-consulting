@@ -1,17 +1,19 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "ghost" | "outlineLight";
+type Variant = "primary" | "secondary" | "ghost" | "outlineLight" | "outlineDark";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-sage text-navy hover:bg-[#6f887a] focus-visible:ring-sage/40 shadow-[0_10px_30px_-18px_rgba(20,36,49,0.55)]",
+    "bg-forest text-ivory hover:bg-deep focus-visible:ring-forest/35",
   secondary:
-    "border border-navy/20 bg-transparent text-navy hover:border-navy/40 hover:bg-navy/[0.03] focus-visible:ring-navy/20",
+    "border border-ink/15 bg-transparent text-ink hover:border-ink/35 hover:bg-ink/[0.03] focus-visible:ring-ink/20",
   ghost:
     "bg-transparent text-ivory hover:bg-white/10 focus-visible:ring-white/30",
   outlineLight:
-    "border border-ivory/35 bg-transparent text-ivory hover:border-ivory/70 hover:bg-white/5 focus-visible:ring-white/25",
+    "border border-ivory/40 bg-transparent text-ivory hover:border-ivory hover:bg-white/5 focus-visible:ring-white/25",
+  outlineDark:
+    "border border-ink/20 bg-transparent text-ink hover:border-forest hover:text-forest focus-visible:ring-forest/25",
 };
 
 type CommonProps = {
@@ -39,7 +41,7 @@ export function Button({
   ...props
 }: ButtonAsButton | ButtonAsLink) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+    "inline-flex items-center justify-center gap-2 rounded-sm px-7 py-3.5 text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
     variants[variant],
     className,
   );

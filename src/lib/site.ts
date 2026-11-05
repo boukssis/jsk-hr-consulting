@@ -8,17 +8,20 @@ export const siteConfig = {
   location: "Irmo, South Carolina, USA",
   locationShort: "Irmo, South Carolina",
   description:
-    "Experienced human resources guidance for small and midsize organizations that need strategic HR support without a full in-house department.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    "Strategic HR guidance for growing businesses, stronger leaders, and workplaces built to thrive.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://jsk-hr-consulting.vercel.app",
   linkedIn: {
     company: "https://www.linkedin.com/company/junesperanzakerr/",
     personal: "https://www.linkedin.com/in/junesperanzakerr/",
   },
-  preview: {
-    isPrivateConcept: true,
-    bannerText:
-      "Private design concept for June Speranza Kerr — not an officially commissioned or endorsed website.",
-  },
+  /** Keep search engines from indexing until officially approved. */
+  noindex: true,
+  /** Form stays closed until a verified recipient is authorized. */
+  acceptEnquiries: Boolean(
+    process.env.CONTACT_TO_EMAIL &&
+      process.env.RESEND_API_KEY &&
+      process.env.CONTACT_ACCEPT_ENQUIRIES === "true",
+  ),
   calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL || "",
 } as const;
 
@@ -38,4 +41,12 @@ export const serviceInterestOptions = [
   "Organizational Change",
   "Career Coaching",
   "Other",
+] as const;
+
+export const expertiseStrip = [
+  "Strategic HR",
+  "Leadership",
+  "Employee Relations",
+  "Workforce Planning",
+  "Organizational Change",
 ] as const;

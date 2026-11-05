@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 
 type SectionHeadingProps = {
   eyebrow?: string;
-  title: string;
+  title: React.ReactNode;
   description?: string;
   align?: "left" | "center";
   light?: boolean;
@@ -34,8 +34,8 @@ export function SectionHeading({
       ) : null}
       <h2
         className={cn(
-          "font-display text-[clamp(2rem,4vw,3.4rem)] leading-[1.08] tracking-[-0.02em]",
-          light ? "text-ivory" : "text-navy",
+          "font-display text-[clamp(2rem,4.2vw,3.5rem)] leading-[1.08] tracking-[-0.02em]",
+          light ? "text-ivory" : "text-ink",
         )}
       >
         {title}
@@ -44,7 +44,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-5 max-w-2xl text-base leading-relaxed sm:text-lg",
-            light ? "text-ivory/75" : "text-slate",
+            light ? "text-ivory/70" : "text-muted",
             align === "center" && "mx-auto",
           )}
         >

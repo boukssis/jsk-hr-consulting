@@ -9,45 +9,47 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact | Schedule an HR Consultation",
   description:
-    "Request a consultation with JSK Human Resources Consulting. Tell us about your organization and the HR challenges you're navigating.",
+    "Start a conversation with JSK Human Resources Consulting about your organization's people priorities.",
 };
 
 export default function ContactPage() {
-  const calendlyUrl = siteConfig.calendlyUrl;
-
   return (
     <>
       <PageHero
+        tone="light"
         eyebrow="Contact"
-        title="Let's talk about what your organization needs."
-        description="Tell us a little about your business and the HR challenges you're navigating. This initial enquiry helps start a thoughtful conversation."
+        title={
+          <>
+            Let&apos;s start a
+            <br />
+            <span className="font-display-italic text-forest">conversation.</span>
+          </>
+        }
+        description="Tell us what your organization is navigating. We'll help you take the next step."
       />
 
-      <section className="bg-ivory py-16 sm:py-24">
+      <section className="bg-white py-16 sm:py-24">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <Reveal>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">
-                Consultation Enquiry
-              </p>
-              <h2 className="mt-4 font-display text-3xl text-navy sm:text-4xl">
-                Share the essentials. We&apos;ll take it from there.
+              <h2 className="font-display text-3xl text-ink sm:text-4xl">
+                Share the essentials.
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-slate">
-                Use the form to request a consultation. Please keep this first
-                message high-level — avoid confidential employee or personnel
-                details until a secure follow-up conversation is appropriate.
+              <p className="mt-5 text-base leading-relaxed text-muted">
+                Keep this first message high-level. Sensitive employee or
+                personnel details are best reserved for a secure follow-up
+                conversation.
               </p>
 
-              <div className="mt-10 space-y-6 border-t border-sand pt-8">
+              <div className="mt-10 space-y-6 border-t border-ink/10 pt-8">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sage">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-forest">
                     Location
                   </p>
-                  <p className="mt-2 text-navy">{siteConfig.location}</p>
+                  <p className="mt-2 text-ink">{siteConfig.location}</p>
                 </div>
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sage">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-forest">
                     Connect on LinkedIn
                   </p>
                   <ul className="mt-3 space-y-2">
@@ -56,7 +58,7 @@ export default function ContactPage() {
                         href={siteConfig.linkedIn.personal}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-navy transition hover:text-sage"
+                        className="inline-flex items-center gap-2 text-sm text-ink transition hover:text-forest"
                       >
                         <LinkedInIcon />
                         June Speranza Kerr
@@ -67,7 +69,7 @@ export default function ContactPage() {
                         href={siteConfig.linkedIn.company}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-navy transition hover:text-sage"
+                        className="inline-flex items-center gap-2 text-sm text-ink transition hover:text-forest"
                       >
                         <LinkedInIcon />
                         JSK Human Resources Consulting
@@ -75,33 +77,26 @@ export default function ContactPage() {
                     </li>
                   </ul>
                 </div>
-
-                {calendlyUrl ? (
+                {siteConfig.calendlyUrl ? (
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sage">
-                      Book Directly
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-forest">
+                      Schedule
                     </p>
                     <a
-                      href={calendlyUrl}
+                      href={siteConfig.calendlyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm text-navy underline decoration-sage/40 underline-offset-4 hover:decoration-sage"
+                      className="mt-2 inline-block text-sm text-ink underline decoration-sage underline-offset-4 hover:text-forest"
                     >
                       Open scheduling calendar
                     </a>
                   </div>
-                ) : (
-                  <div className="border border-dashed border-sand bg-white/60 p-4 text-sm text-slate">
-                    Optional Calendly booking can be enabled later via{" "}
-                    <code className="text-navy">NEXT_PUBLIC_CALENDLY_URL</code>.
-                    No booking link is invented for this preview.
-                  </div>
-                )}
+                ) : null}
               </div>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="border border-sand bg-white p-6 sm:p-8">
+              <div className="border border-ink/10 bg-ivory/50 p-6 sm:p-8">
                 <ContactForm />
               </div>
             </Reveal>

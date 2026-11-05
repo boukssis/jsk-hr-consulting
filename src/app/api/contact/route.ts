@@ -45,13 +45,14 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const fromEmail =
     process.env.CONTACT_FROM_EMAIL || "JSK Website <onboarding@resend.dev>";
+  const acceptEnquiries = process.env.CONTACT_ACCEPT_ENQUIRIES === "true";
 
-  if (!recipient || !apiKey) {
+  if (!acceptEnquiries || !recipient || !apiKey) {
     return NextResponse.json({
       ok: true,
-      mode: "demo",
+      mode: "preview",
       message:
-        "Your enquiry passed validation. Email delivery is not configured yet (set CONTACT_TO_EMAIL and RESEND_API_KEY), so nothing was sent.",
+        "Thank you for your interest. This consultation form is not currently accepting live enquiries. Please connect via LinkedIn to continue the conversation.",
     });
   }
 
@@ -92,7 +93,7 @@ export async function POST(request: Request) {
       ok: true,
       mode: "sent",
       message:
-        "Thank you. Your consultation request has been received. We’ll be in touch soon.",
+        "Thank you. Your consultation request has been received. We'll be in touch soon.",
     });
   } catch {
     return NextResponse.json(
