@@ -1,0 +1,14 @@
+---
+description: When the user says push, always ship to both GitHub and Vercel production
+alwaysApply: true
+---
+
+# Push = GitHub + Vercel
+
+When the user asks to **push** (or similar: ship, deploy, upload):
+
+1. Commit any pending relevant changes if needed (with a clear message)
+2. `git push` to GitHub `origin`
+3. Deploy production with `npx vercel --prod --yes` (do not wait only on GitHub auto-deploy)
+
+Always report both the GitHub commit and the live Vercel URL when done.
