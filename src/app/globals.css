@@ -93,19 +93,7 @@ body {
 }
 
 .scroll-target {
-  scroll-margin-top: calc(var(--header-h) + 7.5rem);
-}
-
-@media (min-width: 640px) {
-  .scroll-target {
-    scroll-margin-top: calc(var(--header-h) + 6rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  .scroll-target {
-    scroll-margin-top: calc(var(--header-h) + 4.25rem);
-  }
+  scroll-margin-top: calc(var(--header-h) + 1.25rem);
 }
 
 .btn-interactive {

@@ -34,7 +34,11 @@ export default function ServicesPage() {
       <ServiceIndex sections={serviceSections} />
 
       {serviceSections.map((section) => (
-        <ServiceEditorial key={section.id} section={section} />
+        <ServiceEditorial
+          key={section.id}
+          section={section}
+          total={serviceSections.length}
+        />
       ))}
 
       <CTABanner
