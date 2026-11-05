@@ -38,22 +38,24 @@ export function ServiceEditorial({ section }: { section: ServiceSection }) {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p
-              className={cn(
-                "font-display text-[clamp(3.5rem,8vw,5.5rem)] leading-none tracking-[-0.04em]",
-                isDark ? "text-sage/40" : "text-sage/35",
-              )}
-            >
-              {section.number}
-            </p>
-            <h2
-              className={cn(
-                "mt-2 font-display text-[clamp(1.85rem,3.4vw,2.7rem)] leading-[1.08]",
-                isDark ? "text-ivory" : "text-navy",
-              )}
-            >
-              {section.title}
-            </h2>
+            <div className="flex items-start gap-3 sm:gap-4">
+              <p
+                className={cn(
+                  "shrink-0 font-display text-[clamp(2.4rem,6vw,3.75rem)] leading-none tracking-[-0.04em]",
+                  isDark ? "text-sage/45" : "text-sage/40",
+                )}
+              >
+                {section.number}
+              </p>
+              <h2
+                className={cn(
+                  "min-w-0 pt-1 font-display text-[clamp(1.55rem,3.2vw,2.4rem)] leading-[1.12] text-balance",
+                  isDark ? "text-ivory" : "text-navy",
+                )}
+              >
+                {section.title}
+              </h2>
+            </div>
             <p
               className={cn(
                 "mt-4 max-w-sm text-base leading-relaxed",
