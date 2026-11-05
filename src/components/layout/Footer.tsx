@@ -10,9 +10,9 @@ export function Footer() {
       <Container className="py-14 lg:py-16">
         <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr_1fr]">
           <div>
-            <div className="inline-block rounded-sm bg-ivory px-3 py-2">
-              <Logo variant="compact" className="!h-10" />
-            </div>
+            <Link href="/" aria-label={`${siteConfig.name} home`}>
+              <Logo tone="light" className="opacity-95" />
+            </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ivory/65">
               Strategic HR guidance for growing organizations that value respect,
               dignity, and integrity in the workplace.

@@ -16,7 +16,19 @@
   --stone: var(--soft);
   --background: var(--ivory);
   --foreground: var(--charcoal);
-  --header-h: 5rem;
+  --header-h: 4rem;
+
+@media (min-width: 640px) {
+  :root {
+    --header-h: 4.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 5rem;
+  }
+}
 }
 
 @theme inline {

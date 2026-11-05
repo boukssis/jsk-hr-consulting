@@ -57,13 +57,13 @@ export function Header() {
           : "border-navy/5 bg-ivory",
       )}
     >
-      <Container className="flex h-20 items-center justify-between gap-6 lg:h-[5rem]">
+      <Container className="flex h-16 items-center justify-between gap-4 sm:h-[4.5rem] lg:h-[5rem]">
         <Link
           href="/"
-          className="shrink-0 focus-visible:outline-none"
+          className="relative z-10 max-w-[42vw] shrink-0 focus-visible:outline-none sm:max-w-none"
           aria-label={`${siteConfig.name} home`}
         >
-          <Logo variant="compact" priority />
+          <Logo priority />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">

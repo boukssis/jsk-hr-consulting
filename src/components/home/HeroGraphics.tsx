@@ -16,8 +16,8 @@ export function HeroGraphics() {
     if (!media.matches) return;
 
     const onMove = (event: MouseEvent) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 18;
-      const y = (event.clientY / window.innerHeight - 0.5) * 12;
+      const x = (event.clientX / window.innerWidth - 0.5) * 24;
+      const y = (event.clientY / window.innerHeight - 0.5) * 16;
       layer.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     };
 
@@ -27,28 +27,50 @@ export function HeroGraphics() {
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="hero-grid absolute inset-0 opacity-80" />
+      <div className="hero-grid absolute inset-0 opacity-70" />
+      <div
+        className="absolute -left-24 top-16 h-72 w-72 rounded-full opacity-40 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(107,143,94,0.28), transparent 68%)",
+        }}
+      />
+      <div
+        className="absolute -right-16 bottom-10 h-80 w-80 rounded-full opacity-35 blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(8,32,48,0.14), transparent 70%)",
+        }}
+      />
+
       <div
         ref={layerRef}
-        className="absolute inset-0 transition-transform duration-500 ease-out will-change-transform"
+        className="absolute inset-0 transition-transform duration-700 ease-out will-change-transform"
       >
         <div
-          className="absolute -right-[6%] top-[8%] h-[52vmin] w-[52vmin] rounded-full border border-sage/35"
+          className="absolute -right-[8%] top-[6%] h-[58vmin] w-[58vmin] rounded-full border border-sage/40"
           style={
             reduceMotion
               ? undefined
-              : { animation: "pulse-ring 11s ease-in-out infinite" }
+              : { animation: "pulse-ring 10s ease-in-out infinite" }
           }
         />
         <div
-          className="absolute right-[4%] top-[18%] h-[34vmin] w-[34vmin] rounded-full border border-navy/10"
+          className="absolute right-[2%] top-[16%] h-[38vmin] w-[38vmin] rounded-full border border-navy/15"
           style={
             reduceMotion
               ? undefined
-              : { animation: "pulse-ring 13s ease-in-out infinite 0.6s" }
+              : { animation: "pulse-ring 12s ease-in-out infinite 0.5s" }
           }
         />
-        <div className="absolute bottom-[16%] right-[12%] h-[16vmin] w-[16vmin] rounded-full border border-sage/40" />
+        <div
+          className="absolute bottom-[14%] right-[10%] h-[20vmin] w-[20vmin] rounded-full border border-sage/50"
+          style={
+            reduceMotion
+              ? undefined
+              : { animation: "float-soft 9s ease-in-out infinite" }
+          }
+        />
 
         <svg
           className="absolute inset-0 h-full w-full"
@@ -57,109 +79,98 @@ export function HeroGraphics() {
           preserveAspectRatio="xMidYMid slice"
         >
           <path
-            d="M860 110 C1040 170 1160 280 1220 430"
+            d="M780 90 C980 150 1140 270 1240 450"
             stroke="#6B8F5E"
-            strokeWidth="1.2"
-            strokeOpacity="0.55"
+            strokeWidth="1.4"
+            strokeOpacity="0.6"
             pathLength="1"
             strokeDasharray="1"
             style={
               reduceMotion
                 ? undefined
                 : {
-                    animation: "draw-line 2.6s ease forwards 0.35s",
+                    animation: "draw-line 2.4s ease forwards 0.25s",
                     strokeDashoffset: 1,
                   }
             }
           />
           <path
-            d="M900 150 C1080 230 1180 360 1240 540"
+            d="M820 140 C1020 220 1160 360 1260 560"
             stroke="#082030"
-            strokeWidth="1"
-            strokeOpacity="0.18"
+            strokeWidth="1.1"
+            strokeOpacity="0.2"
             pathLength="1"
             strokeDasharray="1"
             style={
               reduceMotion
                 ? undefined
                 : {
-                    animation: "draw-line 3s ease forwards 0.55s",
+                    animation: "draw-line 2.8s ease forwards 0.45s",
                     strokeDashoffset: 1,
                   }
             }
           />
           <path
-            d="M820 220 C980 300 1080 420 1140 560"
+            d="M760 210 C960 300 1100 430 1200 600"
             stroke="#6B8F5E"
             strokeWidth="1"
-            strokeOpacity="0.3"
+            strokeOpacity="0.35"
             pathLength="1"
             strokeDasharray="1"
             style={
               reduceMotion
                 ? undefined
                 : {
-                    animation: "draw-line 2.8s ease forwards 0.75s",
+                    animation: "draw-line 3s ease forwards 0.65s",
+                    strokeDashoffset: 1,
+                  }
+            }
+          />
+          <path
+            d="M70 560 C220 480 340 500 420 430 C500 360 560 300 680 280"
+            stroke="#6B8F5E"
+            strokeWidth="1"
+            strokeOpacity="0.28"
+            pathLength="1"
+            strokeDasharray="1"
+            style={
+              reduceMotion
+                ? undefined
+                : {
+                    animation: "draw-line 3.2s ease forwards 0.5s",
                     strokeDashoffset: 1,
                   }
             }
           />
 
           {[
-            [860, 110],
-            [980, 170],
-            [1100, 270],
-            [1180, 380],
-            [1220, 430],
-            [1240, 540],
-            [900, 250],
-            [1040, 360],
-            [1140, 560],
+            [780, 90],
+            [920, 150],
+            [1060, 250],
+            [1160, 360],
+            [1240, 450],
+            [1260, 560],
+            [840, 230],
+            [1000, 340],
+            [1140, 500],
+            [70, 560],
+            [220, 490],
+            [420, 430],
+            [680, 280],
           ].map(([cx, cy], i) => (
             <circle
               key={`${cx}-${cy}`}
               cx={cx}
               cy={cy}
-              r={i % 3 === 0 ? 4.5 : 3}
+              r={i % 4 === 0 ? 5 : 3.2}
               fill={i % 2 === 0 ? "#6B8F5E" : "#082030"}
-              fillOpacity={i % 2 === 0 ? 0.7 : 0.28}
+              fillOpacity={i % 2 === 0 ? 0.75 : 0.3}
             />
           ))}
-
-          <g className={reduceMotion ? undefined : "animate-float-soft"}>
-            <line
-              x1="90"
-              y1="620"
-              x2="280"
-              y2="520"
-              stroke="#082030"
-              strokeOpacity="0.12"
-            />
-            <line
-              x1="280"
-              y1="520"
-              x2="360"
-              y2="640"
-              stroke="#082030"
-              strokeOpacity="0.12"
-            />
-            <line
-              x1="280"
-              y1="520"
-              x2="420"
-              y2="470"
-              stroke="#6B8F5E"
-              strokeOpacity="0.35"
-            />
-            <circle cx="90" cy="620" r="3.5" fill="#6B8F5E" fillOpacity="0.55" />
-            <circle cx="280" cy="520" r="4.5" fill="#082030" fillOpacity="0.3" />
-            <circle cx="360" cy="640" r="3" fill="#6B8F5E" fillOpacity="0.5" />
-            <circle cx="420" cy="470" r="3.5" fill="#334D40" fillOpacity="0.45" />
-          </g>
         </svg>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-ivory" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent via-ivory/70 to-ivory" />
     </div>
   );
 }
