@@ -50,7 +50,7 @@ export function PageHero({
           </h1>
           <p
             className={cn(
-              "mt-6 max-w-2xl text-base leading-relaxed sm:text-lg",
+              "mt-5 max-w-xl text-base leading-relaxed sm:text-lg",
               isDark ? "text-ivory/70" : "text-muted",
             )}
           >

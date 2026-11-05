@@ -5,17 +5,17 @@ type Variant = "primary" | "secondary" | "ghost" | "outlineLight" | "outlineDark
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-navy text-ivory hover:bg-charcoal focus-visible:ring-navy/30",
+    "bg-navy text-ivory shadow-[0_10px_24px_-14px_rgba(8,32,48,0.65)] hover:bg-sage hover:text-navy hover:shadow-[0_14px_28px_-12px_rgba(107,143,94,0.55)] active:bg-sage-deep active:text-ivory",
   secondary:
-    "border border-navy/20 bg-transparent text-navy hover:border-navy/40 hover:bg-navy/[0.03] focus-visible:ring-navy/20",
+    "border border-navy/20 bg-transparent text-navy hover:border-navy hover:bg-navy hover:text-ivory active:bg-charcoal",
   ghost:
-    "bg-transparent text-ivory hover:bg-white/10 focus-visible:ring-white/30",
+    "bg-transparent text-ivory hover:bg-white/15 active:bg-white/25",
   outlineLight:
-    "border border-ivory/40 bg-transparent text-ivory hover:border-ivory hover:bg-white/5 focus-visible:ring-white/25",
+    "border border-ivory/45 bg-transparent text-ivory hover:border-ivory hover:bg-ivory hover:text-navy active:bg-soft",
   outlineDark:
-    "border border-navy/20 bg-transparent text-navy hover:border-sage hover:text-deep focus-visible:ring-sage/25",
+    "border border-navy/25 bg-transparent text-navy hover:border-sage hover:bg-sage hover:text-navy active:bg-sage-deep active:text-ivory",
   sage:
-    "bg-sage text-navy hover:bg-sage-deep hover:text-ivory focus-visible:ring-sage/35",
+    "bg-sage text-navy shadow-[0_10px_24px_-14px_rgba(107,143,94,0.7)] hover:bg-navy hover:text-ivory hover:shadow-[0_14px_28px_-12px_rgba(8,32,48,0.55)] active:bg-charcoal",
 };
 
 type CommonProps = {
@@ -43,7 +43,8 @@ export function Button({
   ...props
 }: ButtonAsButton | ButtonAsLink) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-sm px-7 py-3.5 text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+    "btn-interactive inline-flex items-center justify-center gap-2 rounded-sm px-7 py-3.5 text-[11px] font-semibold tracking-[0.16em] uppercase transition-all duration-300 ease-out will-change-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60",
+    "hover:-translate-y-1 hover:scale-[1.02] active:translate-y-0 active:scale-[0.97]",
     variants[variant],
     className,
   );

@@ -1,85 +1,122 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { homepageServices } from "@/data/services";
+import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
+const shortLines: Record<string, string> = {
+  "strategic-hr": "People strategy that fits how you grow.",
+  "leadership-development": "Stronger leaders. Clearer teams.",
+  "talent-acquisition": "Find and shape the talent you need.",
+  "employee-relations": "Fair, steady workplace guidance.",
+  "organizational-change": "Navigate change with confidence.",
+  "career-transition": "Move forward with clarity.",
+};
+
 export function ServicesOverview() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="bg-white py-20 sm:py-28">
+    <section className="bg-white py-16 sm:py-24">
       <Container>
-        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <Reveal>
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage-deep">
-              Services
+              What we do
             </p>
-            <h2 className="mt-4 max-w-xl font-display text-[clamp(2rem,4vw,3.3rem)] leading-[1.08] text-navy">
-              Expertise shaped around your people priorities.
+            <h2 className="mt-3 max-w-lg font-display text-[clamp(1.9rem,4vw,3rem)] leading-[1.08] text-navy">
+              Clear services.{" "}
+              <span className="font-display-italic text-sage">Real impact.</span>
             </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-navy transition hover:text-sage-deep"
-            >
-              View all services
-              <ArrowUpRight className="h-4 w-4" aria-hidden />
-            </Link>
-          </Reveal>
+          </div>
+          <Button href="/services" variant="outlineDark" className="!px-5 !py-3 self-start sm:self-auto">
+            View all services
+          </Button>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {homepageServices.map((service, index) => {
             const featured = index === 0;
             return (
-              <Reveal
+              <motion.div
                 key={service.id}
-                delay={0.05 * index}
-                className={cn(featured && "md:col-span-2 xl:col-span-1 xl:row-span-2")}
+                className={featured ? "sm:col-span-2 lg:col-span-1" : undefined}
+                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  delay: reduceMotion ? 0 : 0.05 * index,
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <Link
                   href={service.href}
                   className={cn(
-                    "group relative flex h-full flex-col overflow-hidden border border-navy/10 bg-ivory p-6 transition duration-300 hover:-translate-y-1 hover:border-sage/50 hover:bg-soft/40 sm:p-7",
-                    featured && "min-h-[280px] xl:min-h-full xl:justify-between",
+                    "group relative flex h-full min-h-[180px] flex-col justify-between overflow-hidden border p-6 transition-all duration-300",
+                    "hover:-translate-y-1 active:translate-y-0 active:scale-[0.99]",
+                    featured
+                      ? "border-navy bg-navy text-ivory hover:border-sage hover:shadow-[0_24px_48px_-20px_rgba(8,32,48,0.55)]"
+                      : "border-navy/10 bg-ivory hover:border-sage hover:bg-navy hover:shadow-[0_20px_40px_-24px_rgba(8,32,48,0.55)]",
                   )}
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="font-display text-3xl text-sage transition group-hover:text-sage-deep">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={cn(
+                        "font-display text-3xl leading-none",
+                        featured ? "text-sage" : "text-sage group-hover:text-sage",
+                      )}
+                    >
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="flex h-9 w-9 items-center justify-center border border-navy/10 text-navy transition group-hover:border-sage group-hover:bg-sage group-hover:text-navy">
-                      <ArrowUpRight className="h-4 w-4" aria-hidden />
+                    <span
+                      className={cn(
+                        "flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300",
+                        featured
+                          ? "border-sage/40 text-sage group-hover:border-sage group-hover:bg-sage group-hover:text-navy"
+                          : "border-navy/10 text-navy group-hover:border-sage group-hover:bg-sage group-hover:text-navy",
+                      )}
+                    >
+                      <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
                   </div>
 
-                  <div className={cn("mt-8", featured && "xl:mt-auto xl:pt-16")}>
+                  <div className="mt-8">
                     <h3
                       className={cn(
-                        "font-display text-navy",
+                        "font-display text-xl leading-snug sm:text-[1.4rem]",
                         featured
-                          ? "text-[1.85rem] leading-tight sm:text-[2.1rem]"
-                          : "text-2xl",
+                          ? "text-ivory"
+                          : "text-navy transition group-hover:text-ivory",
                       )}
                     >
                       {service.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted sm:text-[0.95rem]">
-                      {service.description}
+                    <p
+                      className={cn(
+                        "mt-2 text-sm leading-relaxed",
+                        featured
+                          ? "text-ivory/65"
+                          : "text-muted transition group-hover:text-ivory/70",
+                      )}
+                    >
+                      {shortLines[service.id] ?? service.description}
                     </p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-sage-deep">
-                      Explore
-                      <span className="h-px w-6 bg-sage transition-all group-hover:w-10" />
-                    </span>
                   </div>
 
-                  <div
-                    className="pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full border border-sage/20 opacity-0 transition duration-500 group-hover:opacity-100"
+                  <span
+                    className={cn(
+                      "pointer-events-none absolute bottom-0 left-0 h-1 bg-sage transition-all duration-500",
+                      featured ? "w-full" : "w-0 group-hover:w-full",
+                    )}
                     aria-hidden
                   />
                 </Link>
-              </Reveal>
+              </motion.div>
             );
           })}
         </div>

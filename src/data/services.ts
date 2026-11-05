@@ -28,8 +28,7 @@ export const serviceSections: ServiceSection[] = [
     homepageDescription:
       "Practical guidance on workforce planning, people strategy, and organizational design for growing businesses.",
     showOnHomepage: true,
-    summary:
-      "Experienced advisory support for organizations that need clear people strategy without building a full internal HR department.",
+    summary: "Clear people strategy without building a full HR department.",
     tone: "ivory",
     items: [
       {
@@ -72,8 +71,7 @@ export const serviceSections: ServiceSection[] = [
     homepageDescription:
       "Recruitment strategy and workforce planning support to help you attract the right people at the right time.",
     showOnHomepage: true,
-    summary:
-      "Support for attracting, planning for, and developing the talent your organization needs to grow responsibly.",
+    summary: "Attract, plan for, and develop the talent your growth requires.",
     tone: "white",
     items: [
       {
@@ -111,8 +109,7 @@ export const serviceSections: ServiceSection[] = [
     homepageDescription:
       "Coaching and workshops that strengthen leadership capability, communication, and team effectiveness.",
     showOnHomepage: true,
-    summary:
-      "Development support for leaders and teams who need stronger communication, presence, and people leadership skills.",
+    summary: "Coaching and workshops that strengthen leadership and teams.",
     tone: "soft",
     items: [
       {
@@ -155,8 +152,7 @@ export const serviceSections: ServiceSection[] = [
     homepageDescription:
       "Thoughtful support for workplace communication, employee concerns, and sensitive people matters.",
     showOnHomepage: true,
-    summary:
-      "Confidential, steady support for workplace communication, employee concerns, and sensitive people matters.",
+    summary: "Steady support for concerns, communication, and sensitive matters.",
     tone: "ivory",
     items: [
       {
@@ -189,8 +185,7 @@ export const serviceSections: ServiceSection[] = [
     homepageDescription:
       "Structured support through restructuring, transitions, and periods of meaningful organizational change.",
     showOnHomepage: true,
-    summary:
-      "Practical guidance helping organizations navigate restructuring, change management, and workforce realignment with clarity.",
+    summary: "Practical guidance through restructuring and meaningful change.",
     tone: "white",
     items: [
       {
@@ -219,8 +214,7 @@ export const serviceSections: ServiceSection[] = [
     id: "compensation",
     number: "06",
     title: "Compensation & Organizational Strategy",
-    summary:
-      "Advisory support that helps organizations align people systems with strategy and organizational effectiveness.",
+    summary: "Align people systems with strategy and organizational effectiveness.",
     tone: "soft",
     items: [
       {
@@ -250,7 +244,7 @@ export const serviceSections: ServiceSection[] = [
     number: "07",
     title: "Complex Business Transitions",
     summary:
-      "Steady HR support when organizations face significant change, restructuring, or high-stakes workforce decisions. Consulting support only — not legal representation.",
+      "HR support for high-stakes transitions. Consulting guidance — not legal representation.",
     tone: "navy",
     items: [
       {
@@ -283,8 +277,7 @@ export const serviceSections: ServiceSection[] = [
     homepageDescription:
       "Individual coaching for professionals navigating career transitions with clarity and confidence.",
     showOnHomepage: true,
-    summary:
-      "Individual coaching support for professionals navigating career transitions with clarity, confidence, and a people-first approach.",
+    summary: "One-to-one coaching for professionals navigating career change.",
     tone: "ivory",
     items: [
       {

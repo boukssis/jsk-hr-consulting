@@ -17,6 +17,7 @@
   --background: var(--ivory);
   --foreground: var(--charcoal);
   --header-h: 4rem;
+}
 
 @media (min-width: 640px) {
   :root {
@@ -28,7 +29,6 @@
   :root {
     --header-h: 5rem;
   }
-}
 }
 
 @theme inline {
@@ -93,7 +93,11 @@ body {
 }
 
 .scroll-target {
-  scroll-margin-top: calc(var(--header-h) + 1.25rem);
+  scroll-margin-top: calc(var(--header-h) + 4.5rem);
+}
+
+.btn-interactive {
+  transform: translateZ(0);
 }
 
 @keyframes float-soft {
@@ -142,5 +146,9 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .btn-interactive:hover {
+    transform: none;
   }
 }
