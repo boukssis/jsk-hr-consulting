@@ -18,10 +18,10 @@ export function CTABanner({
   href = "/contact",
 }: CTABannerProps) {
   return (
-    <section className="relative overflow-hidden bg-deep py-20 sm:py-24">
+    <section className="relative overflow-hidden bg-navy py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0 hero-grid opacity-20" />
       <svg
-        className="pointer-events-none absolute -right-10 top-8 h-64 w-64 text-sage/20"
+        className="pointer-events-none absolute -right-10 top-8 h-64 w-64 text-sage/25"
         viewBox="0 0 200 200"
         fill="none"
         aria-hidden
@@ -44,7 +44,7 @@ export function CTABanner({
             </p>
           ) : null}
           <div className="mt-9">
-            <Button href={href} className="bg-sage text-ink hover:bg-ivory">
+            <Button href={href} variant="sage">
               {buttonLabel}
             </Button>
           </div>

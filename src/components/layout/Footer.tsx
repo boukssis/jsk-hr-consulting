@@ -1,18 +1,18 @@
 import Link from "next/link";
+import { Logo } from "@/components/brand/Logo";
 import { Container } from "@/components/ui/Container";
 import { LinkedInIcon } from "@/components/ui/LinkedInIcon";
 import { navLinks, siteConfig } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-ink/10 bg-ink text-ivory">
+    <footer className="border-t border-white/10 bg-navy text-ivory">
       <Container className="py-14 lg:py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr_1fr]">
           <div>
-            <p className="font-display text-4xl tracking-tight">JSK</p>
-            <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-sage">
-              Human Resources Consulting
-            </p>
+            <div className="inline-block rounded-sm bg-ivory px-3 py-2">
+              <Logo variant="compact" className="!h-10" />
+            </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ivory/65">
               Strategic HR guidance for growing organizations that value respect,
               dignity, and integrity in the workplace.
@@ -72,9 +72,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-ivory/40 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © 2026 {siteConfig.name}
-          </p>
+          <p>© 2026 {siteConfig.name}</p>
           <p>Founded {siteConfig.founded}</p>
         </div>
       </Container>

@@ -30,13 +30,13 @@ const steps = [
 
 export function HowWeWork() {
   return (
-    <section className="bg-stone/50 py-20 sm:py-28">
+    <section className="bg-soft/50 py-20 sm:py-28">
       <Container>
         <Reveal className="max-w-2xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-forest">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage-deep">
             Working Together
           </p>
-          <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.3rem)] leading-[1.08] text-ink">
+          <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.3rem)] leading-[1.08] text-navy">
             A clear path from conversation to action.
           </h2>
         </Reveal>
@@ -45,14 +45,14 @@ export function HowWeWork() {
           {steps.map((step, index) => (
             <Reveal key={step.number} delay={0.06 * index}>
               <article
-                className={`h-full border-ink/10 px-0 py-6 md:border-l md:px-6 md:py-0 ${
+                className={`h-full border-navy/10 px-0 py-6 md:border-l md:px-6 md:py-0 ${
                   index === 0 ? "md:border-l-0 md:pl-0" : ""
                 }`}
               >
                 <span className="font-display text-3xl text-sage">
                   {step.number}
                 </span>
-                <h3 className="mt-5 font-display text-2xl text-ink">
+                <h3 className="mt-5 font-display text-2xl text-navy">
                   {step.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">

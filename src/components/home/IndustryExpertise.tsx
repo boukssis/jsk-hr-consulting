@@ -36,10 +36,10 @@ export function IndustryExpertise() {
     <section className="bg-ivory py-20 sm:py-28">
       <Container>
         <Reveal className="max-w-2xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-forest">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage-deep">
             Industry Expertise
           </p>
-          <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.3rem)] leading-[1.08] text-ink">
+          <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3.3rem)] leading-[1.08] text-navy">
             Experience across nuclear, construction, and complex operational
             environments.
           </h2>
@@ -65,7 +65,7 @@ export function IndustryExpertise() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition duration-700 group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-navy/10" />
                 <div className="absolute inset-0 flex flex-col justify-end p-7 sm:p-8">
                   <h3 className="font-display text-3xl text-ivory">
                     {panel.title}

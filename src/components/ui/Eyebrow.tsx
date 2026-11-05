@@ -13,7 +13,7 @@ export function Eyebrow({
     <p
       className={cn(
         "text-[11px] font-semibold uppercase tracking-[0.22em]",
-        light ? "text-sage" : "text-forest",
+        light ? "text-sage" : "text-sage-deep",
         className,
       )}
     >

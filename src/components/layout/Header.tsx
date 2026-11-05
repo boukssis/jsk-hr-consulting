@@ -4,10 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { navLinks, siteConfig } from "@/lib/site";
-import { cn } from "@/lib/cn";
-import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { cn } from "@/lib/cn";
+import { navLinks, siteConfig } from "@/lib/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -16,7 +17,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -52,28 +53,20 @@ export function Header() {
       className={cn(
         "sticky top-0 z-50 w-full border-b transition-colors duration-300",
         scrolled || open
-          ? "border-ink/10 bg-ivory/95 backdrop-blur-md"
-          : "border-transparent bg-ivory",
+          ? "border-navy/10 bg-ivory/95 backdrop-blur-md"
+          : "border-navy/5 bg-ivory",
       )}
     >
-      <Container className="flex h-[4.5rem] items-center justify-between gap-6 lg:h-[5rem]">
+      <Container className="flex h-20 items-center justify-between gap-6 lg:h-[5rem]">
         <Link
           href="/"
-          className="group flex shrink-0 flex-col leading-none focus-visible:outline-none"
+          className="shrink-0 focus-visible:outline-none"
           aria-label={`${siteConfig.name} home`}
         >
-          <span className="font-display text-[1.65rem] tracking-tight text-ink transition group-hover:text-forest">
-            JSK
-          </span>
-          <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-muted">
-            Human Resources Consulting
-          </span>
+          <Logo variant="compact" priority />
         </Link>
 
-        <nav
-          className="hidden items-center gap-1 lg:flex"
-          aria-label="Primary"
-        >
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           {navLinks.map((link) => {
             const active =
               link.href === "/"
@@ -84,14 +77,14 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative px-3.5 py-2 text-[12px] font-medium tracking-[0.04em] text-muted transition-colors hover:text-ink",
-                  active && "text-ink",
+                  "relative px-3.5 py-2 text-[12px] font-medium tracking-[0.04em] text-muted transition-colors hover:text-navy",
+                  active && "text-navy",
                 )}
               >
                 {link.label}
                 <span
                   className={cn(
-                    "absolute inset-x-3.5 bottom-1 h-px bg-forest transition-opacity duration-300",
+                    "absolute inset-x-3.5 bottom-1 h-px bg-sage transition-opacity duration-300",
                     active ? "opacity-100" : "opacity-0",
                   )}
                 />
@@ -108,7 +101,7 @@ export function Header() {
 
         <button
           type="button"
-          className="relative flex h-11 w-11 items-center justify-center text-ink lg:hidden"
+          className="relative flex h-11 w-11 items-center justify-center text-navy lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -139,7 +132,7 @@ export function Header() {
         {open ? (
           <motion.div
             id="mobile-nav"
-            className="border-t border-ink/10 bg-ivory lg:hidden"
+            className="border-t border-navy/10 bg-ivory lg:hidden"
             initial={reduceMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
@@ -157,15 +150,19 @@ export function Header() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "border-b border-stone py-4 text-base font-medium text-ink",
-                      active && "text-forest",
+                      "border-b border-soft py-4 text-base font-medium text-navy",
+                      active && "text-sage-deep",
                     )}
                   >
                     {link.label}
                   </Link>
                 );
               })}
-              <Button href="/contact" className="mt-5 w-full" onClick={() => setOpen(false)}>
+              <Button
+                href="/contact"
+                className="mt-5 w-full"
+                onClick={() => setOpen(false)}
+              >
                 Book a Consultation
               </Button>
             </nav>

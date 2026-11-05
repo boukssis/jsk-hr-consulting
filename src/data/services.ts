@@ -1,82 +1,36 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  BriefcaseBusiness,
-  Compass,
-  Handshake,
-  Layers3,
-  RefreshCw,
-  Users,
-  UserRoundSearch,
-  Waypoints,
-} from "lucide-react";
-
 export type ServiceItem = {
   title: string;
   description: string;
 };
 
-export type ServiceCategory = {
+export type ServiceSection = {
   id: string;
-  eyebrow: string;
+  number: string;
   title: string;
   summary: string;
-  icon: LucideIcon;
   items: ServiceItem[];
+  tone: "ivory" | "white" | "soft" | "navy";
+  showOnHomepage?: boolean;
+  homepageTitle?: string;
+  homepageDescription?: string;
 };
 
-export const homepageServices = [
-  {
-    title: "Strategic HR Advisory",
-    description:
-      "Practical guidance on workforce planning, people strategy, and organizational design for growing businesses.",
-    href: "/services#strategic-hr",
-    icon: Compass,
-  },
-  {
-    title: "Leadership Development",
-    description:
-      "Coaching and workshops that strengthen leadership capability, communication, and team effectiveness.",
-    href: "/services#leadership",
-    icon: Users,
-  },
-  {
-    title: "Talent Acquisition",
-    description:
-      "Recruitment strategy and workforce planning support to help you attract the right people at the right time.",
-    href: "/services#talent",
-    icon: UserRoundSearch,
-  },
-  {
-    title: "Employee Relations",
-    description:
-      "Thoughtful support for workplace communication, employee concerns, and sensitive people matters.",
-    href: "/services#employee-relations",
-    icon: Handshake,
-  },
-  {
-    title: "Organizational Change",
-    description:
-      "Structured support through restructuring, transitions, and periods of meaningful organizational change.",
-    href: "/services#employee-relations",
-    icon: RefreshCw,
-  },
-  {
-    title: "Career Transition Coaching",
-    description:
-      "Individual coaching for professionals navigating career transitions with clarity and confidence.",
-    href: "/services#leadership",
-    icon: Waypoints,
-  },
-] as const;
-
-export const serviceCategories: ServiceCategory[] = [
+/**
+ * Canonical service registry — single source of truth for homepage links
+ * and /services page sections. IDs must stay stable for hash navigation.
+ */
+export const serviceSections: ServiceSection[] = [
   {
     id: "strategic-hr",
-    eyebrow: "Foundation",
+    number: "01",
     title: "Strategic HR Consulting",
+    homepageTitle: "Strategic HR Advisory",
+    homepageDescription:
+      "Practical guidance on workforce planning, people strategy, and organizational design for growing businesses.",
+    showOnHomepage: true,
     summary:
       "Experienced advisory support for organizations that need clear people strategy without building a full internal HR department.",
-    icon: Compass,
+    tone: "ivory",
     items: [
       {
         title: "HR planning and advisory",
@@ -111,12 +65,16 @@ export const serviceCategories: ServiceCategory[] = [
     ],
   },
   {
-    id: "talent",
-    eyebrow: "Growth",
+    id: "talent-acquisition",
+    number: "02",
     title: "Talent Acquisition & Workforce Planning",
+    homepageTitle: "Talent Acquisition",
+    homepageDescription:
+      "Recruitment strategy and workforce planning support to help you attract the right people at the right time.",
+    showOnHomepage: true,
     summary:
       "Support for attracting, planning for, and developing the talent your organization needs to grow responsibly.",
-    icon: UserRoundSearch,
+    tone: "white",
     items: [
       {
         title: "Recruitment strategy",
@@ -146,12 +104,16 @@ export const serviceCategories: ServiceCategory[] = [
     ],
   },
   {
-    id: "leadership",
-    eyebrow: "Capability",
+    id: "leadership-development",
+    number: "03",
     title: "Leadership Development",
+    homepageTitle: "Leadership Development",
+    homepageDescription:
+      "Coaching and workshops that strengthen leadership capability, communication, and team effectiveness.",
+    showOnHomepage: true,
     summary:
       "Development support for leaders and teams who need stronger communication, presence, and people leadership skills.",
-    icon: Users,
+    tone: "soft",
     items: [
       {
         title: "Leadership workshops",
@@ -187,11 +149,15 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "employee-relations",
-    eyebrow: "Workplace",
-    title: "Employee Relations & Organizational Change",
+    number: "04",
+    title: "Employee Relations",
+    homepageTitle: "Employee Relations",
+    homepageDescription:
+      "Thoughtful support for workplace communication, employee concerns, and sensitive people matters.",
+    showOnHomepage: true,
     summary:
-      "Confidential, steady support for sensitive workplace matters and periods of organizational transition.",
-    icon: Handshake,
+      "Confidential, steady support for workplace communication, employee concerns, and sensitive people matters.",
+    tone: "ivory",
     items: [
       {
         title: "Employee concerns",
@@ -204,6 +170,30 @@ export const serviceCategories: ServiceCategory[] = [
           "Support strengthening how leaders communicate expectations, change, and feedback.",
       },
       {
+        title: "Sensitive workforce matters",
+        description:
+          "Discreet consulting support when situations require experienced judgment and care.",
+      },
+      {
+        title: "Employee transition processes",
+        description:
+          "Respectful support for transitions that affect individuals and teams.",
+      },
+    ],
+  },
+  {
+    id: "organizational-change",
+    number: "05",
+    title: "Organizational Change",
+    homepageTitle: "Organizational Change",
+    homepageDescription:
+      "Structured support through restructuring, transitions, and periods of meaningful organizational change.",
+    showOnHomepage: true,
+    summary:
+      "Practical guidance helping organizations navigate restructuring, change management, and workforce realignment with clarity.",
+    tone: "white",
+    items: [
+      {
         title: "Change management",
         description:
           "Practical planning to help people navigate organizational change with less disruption.",
@@ -214,24 +204,24 @@ export const serviceCategories: ServiceCategory[] = [
           "People-focused guidance through structural shifts and role realignment.",
       },
       {
-        title: "Employee transition processes",
+        title: "Employee communication planning",
         description:
-          "Respectful support for transitions that affect individuals and teams.",
+          "Clear messaging support so people understand what is changing and what remains steady.",
       },
       {
-        title: "Sensitive workforce matters",
+        title: "Workforce realignment",
         description:
-          "Discreet consulting support when situations require experienced judgment and care.",
+          "Thoughtful support when teams, roles, or responsibilities need to evolve.",
       },
     ],
   },
   {
     id: "compensation",
-    eyebrow: "Alignment",
+    number: "06",
     title: "Compensation & Organizational Strategy",
     summary:
       "Advisory support that helps organizations align people systems with strategy and organizational effectiveness.",
-    icon: Layers3,
+    tone: "soft",
     items: [
       {
         title: "Variable compensation programs",
@@ -256,12 +246,12 @@ export const serviceCategories: ServiceCategory[] = [
     ],
   },
   {
-    id: "transitions",
-    eyebrow: "Complexity",
+    id: "complex-transitions",
+    number: "07",
     title: "Complex Business Transitions",
     summary:
-      "Steady HR support when organizations face significant change, restructuring, or high-stakes workforce decisions. This is consulting support — not legal representation.",
-    icon: BriefcaseBusiness,
+      "Steady HR support when organizations face significant change, restructuring, or high-stakes workforce decisions. Consulting support only — not legal representation.",
+    tone: "navy",
     items: [
       {
         title: "HR support for mergers and acquisitions",
@@ -283,11 +273,66 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "Advisory support to help leadership prepare for and navigate negotiation contexts.",
       },
+    ],
+  },
+  {
+    id: "career-transition",
+    number: "08",
+    title: "Career Transition Coaching",
+    homepageTitle: "Career Transition Coaching",
+    homepageDescription:
+      "Individual coaching for professionals navigating career transitions with clarity and confidence.",
+    showOnHomepage: true,
+    summary:
+      "Individual coaching support for professionals navigating career transitions with clarity, confidence, and a people-first approach.",
+    tone: "ivory",
+    items: [
       {
-        title: "Employee communication planning",
+        title: "Career transition coaching",
         description:
-          "Clear messaging support so people understand what is changing and what remains steady.",
+          "One-to-one coaching for professionals preparing for the next stage of their career.",
+      },
+      {
+        title: "Role and direction clarity",
+        description:
+          "Support clarifying strengths, priorities, and practical next steps.",
+      },
+      {
+        title: "Transition communication",
+        description:
+          "Guidance for navigating conversations and changes during career transitions.",
+      },
+      {
+        title: "Confidence and readiness",
+        description:
+          "Thoughtful coaching that helps individuals move forward with composure and purpose.",
       },
     ],
   },
 ];
+
+const homepageOrder = [
+  "strategic-hr",
+  "leadership-development",
+  "talent-acquisition",
+  "employee-relations",
+  "organizational-change",
+  "career-transition",
+] as const;
+
+export const homepageServices = homepageOrder.map((id) => {
+  const section = serviceSections.find((entry) => entry.id === id);
+  if (!section) {
+    throw new Error(`Missing homepage service section: ${id}`);
+  }
+  return {
+    id: section.id,
+    title: section.homepageTitle ?? section.title,
+    description: section.homepageDescription ?? section.summary,
+    href: `/services#${section.id}`,
+  };
+});
+
+export function getServiceHref(id: string) {
+  return `/services#${id}`;
+}

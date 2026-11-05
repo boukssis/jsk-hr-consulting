@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function BrandStatement() {
   return (
-    <section className="relative overflow-hidden bg-deep py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-navy py-24 sm:py-32">
       <div className="pointer-events-none absolute inset-0 hero-grid opacity-15" />
       <svg
         className="pointer-events-none absolute -left-16 top-10 h-72 w-72 text-sage/15"

@@ -27,7 +27,7 @@ export function PageHero({
       className={cn(
         "relative overflow-hidden border-b",
         tone === "light" && "border-ink/10 bg-ivory",
-        tone === "dark" && "border-transparent bg-ink",
+        tone === "dark" && "border-transparent bg-navy",
         tone === "forest" && "border-transparent bg-deep",
       )}
     >

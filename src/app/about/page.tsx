@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { CTABanner } from "@/components/shared/CTABanner";
 import { PageHero } from "@/components/shared/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { LinkedInIcon } from "@/components/ui/LinkedInIcon";
+import { Portrait } from "@/components/ui/Portrait";
 import { Reveal } from "@/components/ui/Reveal";
 import { siteConfig } from "@/lib/site";
 
@@ -34,7 +34,7 @@ export default function AboutPage() {
           <>
             The experience behind
             <br />
-            <span className="font-display-italic text-forest">the advice.</span>
+            <span className="font-display-italic text-sage">the advice.</span>
           </>
         }
         description={`${siteConfig.consultant} provides senior HR consulting through ${siteConfig.name} — helping organizations navigate workplace challenges with clarity and care.`}
@@ -42,39 +42,34 @@ export default function AboutPage() {
 
       <section className="bg-white py-16 sm:py-24">
         <Container>
-          <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div className="grid items-start gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
             <Reveal>
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-stone">
-                <Image
-                  src="/june-speranza-kerr.jpg"
-                  alt="Professional portrait of June Speranza Kerr"
-                  fill
-                  sizes="(max-width: 1024px) 90vw, 38vw"
-                  className="object-cover object-[center_18%]"
-                  preload
-                />
+              <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+                <Portrait size="lg" priority />
+                <p className="mt-6 font-display text-2xl text-navy">
+                  {siteConfig.consultant}
+                </p>
+                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-sage-deep">
+                  {siteConfig.title}
+                </p>
+                <dl className="mt-6 w-full max-w-xs space-y-3 border-t border-navy/10 pt-5 text-sm">
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted">Founded</dt>
+                    <dd className="text-navy">{siteConfig.founded}</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted">Location</dt>
+                    <dd className="text-right text-navy">
+                      {siteConfig.locationShort}
+                    </dd>
+                  </div>
+                </dl>
               </div>
-              <dl className="mx-auto mt-6 max-w-md space-y-3 border border-ink/10 p-5 text-sm">
-                <div className="flex justify-between gap-4 border-b border-ink/10 pb-3">
-                  <dt className="text-muted">Role</dt>
-                  <dd className="text-ink">{siteConfig.title}</dd>
-                </div>
-                <div className="flex justify-between gap-4 border-b border-ink/10 pb-3">
-                  <dt className="text-muted">Founded</dt>
-                  <dd className="text-ink">{siteConfig.founded}</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt className="text-muted">Location</dt>
-                  <dd className="text-right text-ink">
-                    {siteConfig.locationShort}
-                  </dd>
-                </div>
-              </dl>
             </Reveal>
 
             <div className="space-y-10">
               <Reveal delay={0.08}>
-                <h2 className="font-display text-3xl text-ink sm:text-4xl">
+                <h2 className="font-display text-3xl text-navy sm:text-4xl">
                   Professional focus
                 </h2>
                 <div className="mt-5 space-y-4 text-base leading-relaxed text-muted">
@@ -98,7 +93,7 @@ export default function AboutPage() {
                   {expertise.map((item) => (
                     <li
                       key={item}
-                      className="border-l-2 border-sage pl-4 text-sm font-medium text-ink"
+                      className="border-l-2 border-sage pl-4 text-sm font-medium text-navy"
                     >
                       {item}
                     </li>
@@ -112,7 +107,7 @@ export default function AboutPage() {
                     href={siteConfig.linkedIn.personal}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-ink transition hover:text-forest"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-navy transition hover:text-sage-deep"
                   >
                     <LinkedInIcon />
                     June&apos;s LinkedIn
@@ -121,7 +116,7 @@ export default function AboutPage() {
                     href={siteConfig.linkedIn.company}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-ink transition hover:text-forest"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-navy transition hover:text-sage-deep"
                   >
                     <LinkedInIcon />
                     Company LinkedIn
@@ -136,7 +131,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-deep py-20 sm:py-28">
+      <section className="bg-navy py-20 sm:py-28">
         <Container>
           <Reveal className="mx-auto max-w-4xl text-center">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage">
@@ -147,10 +142,7 @@ export default function AboutPage() {
             </h2>
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
               {values.map((value) => (
-                <div
-                  key={value}
-                  className="border border-white/15 px-4 py-10"
-                >
+                <div key={value} className="border border-white/15 px-4 py-10">
                   <p className="font-display text-3xl text-sage sm:text-4xl">
                     {value}
                   </p>

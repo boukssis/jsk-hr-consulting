@@ -1,30 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #172526;
-  --deep: #24463d;
-  --forest: #356655;
-  --sage: #a6b9aa;
-  --ivory: #f8f8f4;
-  --stone: #eaede7;
-  --muted: #71817d;
+  /* Extracted from JSK logo artwork */
+  --navy: #082030;
+  --sage: #6b8f5e;
+  --sage-deep: #607850;
+  --deep: #334d40;
+  --ivory: #fafaf7;
+  --soft: #e8eee6;
+  --charcoal: #18272b;
+  --muted: #5e6f68;
   --white: #ffffff;
+  --ink: var(--navy);
+  --forest: var(--sage);
+  --stone: var(--soft);
   --background: var(--ivory);
-  --foreground: var(--ink);
+  --foreground: var(--charcoal);
+  --header-h: 5rem;
 }
 
 @theme inline {
-  --color-ink: var(--ink);
-  --color-deep: var(--deep);
-  --color-forest: var(--forest);
+  --color-navy: var(--navy);
   --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-deep: var(--deep);
   --color-ivory: var(--ivory);
-  --color-stone: var(--stone);
+  --color-soft: var(--soft);
+  --color-charcoal: var(--charcoal);
   --color-muted: var(--muted);
-  --color-navy: var(--ink);
-  --color-sand: var(--stone);
+  --color-ink: var(--ink);
+  --color-forest: var(--forest);
+  --color-stone: var(--stone);
+  --color-sand: var(--soft);
   --color-slate: var(--muted);
-  --color-charcoal: var(--ink);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-manrope);
@@ -56,25 +64,24 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--sage) 45%, white);
-  color: var(--ink);
+  background: color-mix(in srgb, var(--sage) 40%, white);
+  color: var(--navy);
 }
 
 :focus-visible {
-  outline: 2px solid var(--forest);
+  outline: 2px solid var(--sage);
   outline-offset: 3px;
-}
-
-.hairline {
-  height: 1px;
-  background: color-mix(in srgb, var(--ink) 12%, transparent);
 }
 
 .hero-grid {
   background-image:
-    linear-gradient(to right, rgba(23, 37, 38, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(23, 37, 38, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
+    linear-gradient(to right, rgba(8, 32, 48, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(8, 32, 48, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.scroll-target {
+  scroll-margin-top: calc(var(--header-h) + 1.25rem);
 }
 
 @keyframes float-soft {
@@ -83,7 +90,7 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
@@ -99,21 +106,17 @@ body {
 @keyframes pulse-ring {
   0%,
   100% {
-    opacity: 0.35;
+    opacity: 0.28;
     transform: scale(1);
   }
   50% {
-    opacity: 0.55;
-    transform: scale(1.03);
+    opacity: 0.48;
+    transform: scale(1.025);
   }
 }
 
 .animate-float-soft {
-  animation: float-soft 9s ease-in-out infinite;
-}
-
-.animate-pulse-ring {
-  animation: pulse-ring 8s ease-in-out infinite;
+  animation: float-soft 10s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

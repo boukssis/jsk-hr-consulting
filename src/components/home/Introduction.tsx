@@ -7,13 +7,13 @@ export function Introduction() {
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           <Reveal>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-forest">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage-deep">
               Strategic Thinking. Human Understanding.
             </p>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[1.05] tracking-[-0.02em] text-ink">
+            <h2 className="mt-5 font-display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[1.05] tracking-[-0.02em] text-navy">
               HR isn&apos;t just about policies.
               <br />
-              <span className="font-display-italic text-forest">
+              <span className="font-display-italic text-sage">
                 It&apos;s about people and progress.
               </span>
             </h2>

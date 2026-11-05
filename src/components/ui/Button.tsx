@@ -1,19 +1,21 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "ghost" | "outlineLight" | "outlineDark";
+type Variant = "primary" | "secondary" | "ghost" | "outlineLight" | "outlineDark" | "sage";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-forest text-ivory hover:bg-deep focus-visible:ring-forest/35",
+    "bg-navy text-ivory hover:bg-charcoal focus-visible:ring-navy/30",
   secondary:
-    "border border-ink/15 bg-transparent text-ink hover:border-ink/35 hover:bg-ink/[0.03] focus-visible:ring-ink/20",
+    "border border-navy/20 bg-transparent text-navy hover:border-navy/40 hover:bg-navy/[0.03] focus-visible:ring-navy/20",
   ghost:
     "bg-transparent text-ivory hover:bg-white/10 focus-visible:ring-white/30",
   outlineLight:
     "border border-ivory/40 bg-transparent text-ivory hover:border-ivory hover:bg-white/5 focus-visible:ring-white/25",
   outlineDark:
-    "border border-ink/20 bg-transparent text-ink hover:border-forest hover:text-forest focus-visible:ring-forest/25",
+    "border border-navy/20 bg-transparent text-navy hover:border-sage hover:text-deep focus-visible:ring-sage/25",
+  sage:
+    "bg-sage text-navy hover:bg-sage-deep hover:text-ivory focus-visible:ring-sage/35",
 };
 
 type CommonProps = {

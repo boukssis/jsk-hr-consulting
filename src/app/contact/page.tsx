@@ -22,7 +22,7 @@ export default function ContactPage() {
           <>
             Let&apos;s start a
             <br />
-            <span className="font-display-italic text-forest">conversation.</span>
+            <span className="font-display-italic text-sage">conversation.</span>
           </>
         }
         description="Tell us what your organization is navigating. We'll help you take the next step."
@@ -32,7 +32,7 @@ export default function ContactPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <Reveal>
-              <h2 className="font-display text-3xl text-ink sm:text-4xl">
+              <h2 className="font-display text-3xl text-navy sm:text-4xl">
                 Share the essentials.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-muted">
@@ -41,15 +41,15 @@ export default function ContactPage() {
                 conversation.
               </p>
 
-              <div className="mt-10 space-y-6 border-t border-ink/10 pt-8">
+              <div className="mt-10 space-y-6 border-t border-navy/10 pt-8">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-forest">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sage-deep">
                     Location
                   </p>
-                  <p className="mt-2 text-ink">{siteConfig.location}</p>
+                  <p className="mt-2 text-navy">{siteConfig.location}</p>
                 </div>
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-forest">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sage-deep">
                     Connect on LinkedIn
                   </p>
                   <ul className="mt-3 space-y-2">
@@ -58,7 +58,7 @@ export default function ContactPage() {
                         href={siteConfig.linkedIn.personal}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-ink transition hover:text-forest"
+                        className="inline-flex items-center gap-2 text-sm text-navy transition hover:text-sage-deep"
                       >
                         <LinkedInIcon />
                         June Speranza Kerr
@@ -69,7 +69,7 @@ export default function ContactPage() {
                         href={siteConfig.linkedIn.company}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-ink transition hover:text-forest"
+                        className="inline-flex items-center gap-2 text-sm text-navy transition hover:text-sage-deep"
                       >
                         <LinkedInIcon />
                         JSK Human Resources Consulting
@@ -79,14 +79,14 @@ export default function ContactPage() {
                 </div>
                 {siteConfig.calendlyUrl ? (
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-forest">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sage-deep">
                       Schedule
                     </p>
                     <a
                       href={siteConfig.calendlyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-block text-sm text-ink underline decoration-sage underline-offset-4 hover:text-forest"
+                      className="mt-2 inline-block text-sm text-navy underline decoration-sage underline-offset-4 hover:text-sage-deep"
                     >
                       Open scheduling calendar
                     </a>
@@ -96,7 +96,7 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="border border-ink/10 bg-ivory/50 p-6 sm:p-8">
+              <div className="border border-navy/10 bg-ivory/80 p-6 sm:p-8">
                 <ContactForm />
               </div>
             </Reveal>
