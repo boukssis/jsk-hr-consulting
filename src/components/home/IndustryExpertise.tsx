@@ -38,6 +38,7 @@ export function IndustryExpertise() {
           <Reveal>
             <Link
               href="/industries"
+              aria-label="View industries"
               className="group relative block min-h-[320px] overflow-hidden bg-soft sm:min-h-[460px]"
             >
               <Image

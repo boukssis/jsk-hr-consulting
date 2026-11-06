@@ -18,6 +18,7 @@ export function Header() {
   const [atTop, setAtTop] = useState(true);
   const merged = overHero && atTop && !open;
   const lightBar = !merged && !open;
+  const onLight = !open;
 
   useEffect(() => {
     const onScroll = () => {
@@ -80,7 +81,7 @@ export function Header() {
           className="relative z-[60] max-w-[58vw] shrink-0 focus-visible:outline-none sm:max-w-none"
           aria-label={`${siteConfig.name} home`}
         >
-          <Logo priority tone={lightBar ? "dark" : "light"} />
+          <Logo priority tone={onLight ? "dark" : "light"} />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -95,7 +96,7 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   "group relative px-3.5 py-2 text-[13px] transition-colors",
-                  lightBar
+                  onLight
                     ? active
                       ? "text-ink"
                       : "text-muted hover:text-ink"
@@ -119,7 +120,7 @@ export function Header() {
         <div className="hidden lg:block">
           <Button
             href="/contact"
-            variant={lightBar ? "primary" : "outlineLight"}
+            variant={onLight ? "primary" : "outlineLight"}
             className="!px-5 !py-2.5"
           >
             Let&apos;s Talk
@@ -130,7 +131,7 @@ export function Header() {
           type="button"
           className={cn(
             "relative z-[60] flex h-12 w-12 items-center justify-center lg:hidden",
-            lightBar ? "text-ink" : "text-paper",
+            onLight ? "text-ink" : "text-paper",
           )}
           aria-expanded={open}
           aria-controls="mobile-nav"

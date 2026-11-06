@@ -8,31 +8,31 @@ export function PersonalIntro() {
   return (
     <section className="bg-[#f4f0e8] py-16 text-ink sm:py-24">
       <Container>
-        <Reveal>
-          <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-copper">
-            About
-          </p>
-          <h2 className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3 font-display text-[clamp(2.6rem,6vw,5rem)] leading-[0.95] tracking-[-0.04em]">
-            <span>Meet</span>
-            <Portrait className="h-16 w-16 sm:h-20 sm:w-20" />
-            <span>
-              June
-              <span className="font-display-italic text-copper">.</span>
-            </span>
-          </h2>
-        </Reveal>
-
-        <div className="mt-10 grid gap-8 border-t border-ink/10 pt-8 lg:grid-cols-[1.1fr_auto] lg:items-end">
+        <div className="grid items-center gap-10 lg:grid-cols-[auto_1fr] lg:gap-16">
           <Reveal>
-            <p className="max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-              {siteConfig.consultant} is a {siteConfig.title.toLowerCase()} in{" "}
-              {siteConfig.locationShort}. She founded {siteConfig.shortName} in{" "}
-              {siteConfig.founded} so organizations could get senior HR counsel
-              without building a full department.
-            </p>
+            <Portrait className="h-36 w-36 sm:h-44 sm:w-44" />
           </Reveal>
-          <Reveal delay={0.08}>
-            <Button href="/about">Get to Know June</Button>
+          <Reveal delay={0.06}>
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-copper">
+              The consultant
+            </p>
+            <h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[1.02]">
+              Experienced perspective.
+              <span className="mt-1 block font-display-italic text-sage-deep">
+                Practical people solutions.
+              </span>
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+              {siteConfig.consultant}, {siteConfig.title} in{" "}
+              {siteConfig.locationShort}. She founded {siteConfig.shortName} in{" "}
+              {siteConfig.founded} to work directly with leaders on hiring,
+              employee concerns, and change.
+            </p>
+            <div className="mt-7">
+              <Button href="/about" variant="outlineDark">
+                Get to Know June
+              </Button>
+            </div>
           </Reveal>
         </div>
       </Container>

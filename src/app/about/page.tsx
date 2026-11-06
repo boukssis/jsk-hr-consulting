@@ -50,9 +50,9 @@ export default function AboutPage() {
               About
             </p>
             <h1 className="mt-4 max-w-[12ch] font-display text-[clamp(2.6rem,5.6vw,4.8rem)] leading-[0.96] tracking-[-0.03em]">
-              Experienced in people.
+              Experienced perspective.
               <span className="mt-2 block font-display-italic text-copper">
-                Focused on what matters.
+                Practical people solutions.
               </span>
             </h1>
           </Reveal>

@@ -21,12 +21,11 @@ export default function ServicesPage() {
         eyebrow="Services"
         title={
           <>
-            Counsel for the
-            <span className="font-display-italic text-copper"> moments </span>
-            that matter.
+            The people work,
+            <span className="font-display-italic text-copper"> named clearly.</span>
           </>
         }
-        description="Eight practice areas. Scan the map, then go straight to the work you need."
+        description="Eight areas of practice. Choose one, then see how an engagement can help."
       />
       <ServiceIndex sections={serviceSections} />
       {serviceSections.map((section, index) => (
