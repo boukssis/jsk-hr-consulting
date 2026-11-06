@@ -313,6 +313,29 @@ const homepageOrder = [
   "career-transition",
 ] as const;
 
+const featuredOrder = [
+  "strategic-hr",
+  "talent-acquisition",
+  "leadership-development",
+  "employee-relations",
+  "organizational-change",
+  "complex-transitions",
+] as const;
+
+export const featuredServices = featuredOrder.map((id) => {
+  const section = serviceSections.find((entry) => entry.id === id);
+  if (!section) {
+    throw new Error(`Missing featured service section: ${id}`);
+  }
+  return {
+    id: section.id,
+    number: section.number,
+    title: section.title,
+    summary: section.summary,
+    href: `/services#${section.id}`,
+  };
+});
+
 export const homepageServices = homepageOrder.map((id) => {
   const section = serviceSections.find((entry) => entry.id === id);
   if (!section) {

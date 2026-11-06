@@ -11,43 +11,32 @@ type CTABannerProps = {
 };
 
 export function CTABanner({
-  eyebrow = "Next step",
+  eyebrow = "Consultation",
   title,
   description,
-  buttonLabel = "Start a Conversation",
+  buttonLabel = "Let's Talk",
   href = "/contact",
 }: CTABannerProps) {
   return (
-    <section className="relative overflow-hidden bg-navy py-20 sm:py-24">
-      <div className="pointer-events-none absolute inset-0 hero-grid opacity-20" />
-      <svg
-        className="pointer-events-none absolute -right-10 top-8 h-64 w-64 text-sage/25"
-        viewBox="0 0 200 200"
-        fill="none"
-        aria-hidden
-      >
-        <circle cx="100" cy="100" r="70" stroke="currentColor" strokeWidth="0.8" />
-        <circle cx="100" cy="100" r="46" stroke="currentColor" strokeWidth="0.8" />
-        <circle cx="100" cy="100" r="22" stroke="currentColor" strokeWidth="0.8" />
-      </svg>
-      <Container className="relative">
-        <Reveal className="max-w-3xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage">
+    <section className="bg-ink text-paper">
+      <Container className="grid items-end gap-8 py-16 sm:py-20 lg:grid-cols-[1.4fr_auto] lg:py-24">
+        <Reveal>
+          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-copper">
             {eyebrow}
           </p>
-          <h2 className="mt-5 font-display text-[clamp(2.2rem,5vw,3.8rem)] leading-[1.05] text-ivory">
+          <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.2rem,4.5vw,3.6rem)] leading-[1.05]">
             {title}
           </h2>
           {description ? (
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ivory/70 sm:text-lg">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-paper/65">
               {description}
             </p>
           ) : null}
-          <div className="mt-9">
-            <Button href={href} variant="sage">
-              {buttonLabel}
-            </Button>
-          </div>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <Button href={href} variant="outlineLight">
+            {buttonLabel}
+          </Button>
         </Reveal>
       </Container>
     </section>

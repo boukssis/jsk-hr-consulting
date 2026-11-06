@@ -1,161 +1,71 @@
-"use client";
-
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 import type { ServiceSection } from "@/data/services";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
-
-const tones: Record<ServiceSection["tone"], string> = {
-  ivory: "bg-ivory",
-  white: "bg-white",
-  soft: "bg-soft/70",
-  navy: "bg-navy",
-};
 
 export function ServiceEditorial({
   section,
-  total,
+  index,
 }: {
   section: ServiceSection;
-  total: number;
+  index: number;
 }) {
-  const isDark = section.tone === "navy";
-  const reduceMotion = useReducedMotion();
+  const isDark = index % 2 === 1;
 
   return (
     <section
       id={section.id}
       className={cn(
-        "scroll-target relative overflow-hidden border-b border-navy/8 py-14 sm:py-20",
-        tones[section.tone],
+        "scroll-target relative overflow-hidden py-16 sm:py-20",
+        isDark ? "bg-ink text-paper" : "bg-ivory text-ink",
       )}
     >
-      {isDark ? (
-        <div className="pointer-events-none absolute inset-0 hero-grid opacity-15" />
-      ) : null}
-
+      {isDark ? <div className="pointer-events-none absolute inset-0 hero-grid opacity-20" /> : null}
       <Container className="relative">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start lg:gap-16">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p
-              className={cn(
-                "text-[11px] font-semibold uppercase tracking-[0.22em]",
-                isDark ? "text-sage" : "text-sage-deep",
-              )}
-            >
-              Service {section.number}
-              <span className={isDark ? "text-ivory/35" : "text-navy/25"}>
-                {" "}
-                / {String(total).padStart(2, "0")}
-              </span>
-            </p>
-
-            <h2
-              className={cn(
-                "mt-4 max-w-md font-display text-[clamp(1.85rem,4vw,2.85rem)] leading-[1.08] text-balance",
-                isDark ? "text-ivory" : "text-navy",
-              )}
-            >
-              {section.title}
-            </h2>
-
-            <p
-              className={cn(
-                "mt-4 max-w-md text-base leading-relaxed",
-                isDark ? "text-ivory/70" : "text-muted",
-              )}
-            >
-              {section.summary}
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                href="/contact"
+        <Reveal>
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
+            <div>
+              <p className="font-display text-[clamp(3.5rem,8vw,6rem)] leading-none text-copper/80">
+                {section.number}
+              </p>
+              <h2 className="mt-2 max-w-[14ch] font-display text-[clamp(1.9rem,3.6vw,3rem)] leading-[1.05]">
+                {section.title}
+              </h2>
+              <p
                 className={cn(
-                  "group inline-flex items-center gap-2 rounded-sm border px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] transition-all duration-300",
-                  "hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
-                  isDark
-                    ? "border-sage/50 text-sage hover:border-sage hover:bg-sage hover:text-navy"
-                    : "border-navy/20 text-navy hover:border-sage hover:bg-sage hover:text-navy",
+                  "mt-4 max-w-sm text-base leading-relaxed",
+                  isDark ? "text-paper/70" : "text-muted",
                 )}
               >
-                Discuss this service
-                <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-              <a
-                href="#services-directory"
-                className={cn(
-                  "text-[11px] font-semibold uppercase tracking-[0.14em] transition",
-                  isDark
-                    ? "text-ivory/45 hover:text-sage"
-                    : "text-muted hover:text-navy",
-                )}
-              >
-                Back to directory
-              </a>
+                {section.summary}
+              </p>
             </div>
-          </motion.div>
 
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {section.items.map((item, itemIndex) => (
-              <motion.li
-                key={item.title}
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{
-                  delay: reduceMotion ? 0 : 0.04 * itemIndex,
-                  duration: 0.4,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <div
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {section.items.map((item) => (
+                <li
+                  key={item.title}
                   className={cn(
-                    "flex h-full items-start gap-3 border px-4 py-4 transition-all duration-300",
-                    "hover:-translate-y-0.5",
+                    "border p-4 transition-colors duration-300",
                     isDark
-                      ? "border-white/12 bg-white/5 hover:border-sage/60 hover:bg-sage/10"
-                      : "border-navy/10 bg-white/80 hover:border-sage hover:bg-soft hover:shadow-[0_16px_32px_-24px_rgba(8,32,48,0.35)]",
+                      ? "border-white/12 hover:border-copper/70 hover:bg-white/5"
+                      : "border-ink/10 bg-paper hover:border-copper hover:bg-soft/80",
                   )}
                 >
-                  <span
+                  <h3 className="font-display text-lg leading-snug">{item.title}</h3>
+                  <p
                     className={cn(
-                      "mt-0.5 shrink-0 font-display text-base leading-none",
-                      isDark ? "text-sage" : "text-sage-deep",
+                      "mt-2 text-sm leading-relaxed",
+                      isDark ? "text-paper/60" : "text-muted",
                     )}
                   >
-                    {String(itemIndex + 1).padStart(2, "0")}
-                  </span>
-                  <div className="min-w-0">
-                    <p
-                      className={cn(
-                        "text-sm font-semibold leading-snug",
-                        isDark ? "text-ivory" : "text-navy",
-                      )}
-                    >
-                      {item.title}
-                    </p>
-                    <p
-                      className={cn(
-                        "mt-1.5 text-xs leading-relaxed sm:text-[13px]",
-                        isDark ? "text-ivory/55" : "text-muted",
-                      )}
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
+                    {item.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

@@ -8,20 +8,34 @@ import { Logo } from "@/components/brand/Logo";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
-import { navLinks, siteConfig } from "@/lib/site";
+import { headerLinks, siteConfig } from "@/lib/site";
 
 export function Header() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [overHero, setOverHero] = useState(pathname === "/");
+  const [atTop, setAtTop] = useState(true);
+  const merged = overHero && atTop && !open;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setAtTop(window.scrollY < 12);
+      const hero = document.getElementById("site-hero");
+      if (!hero) {
+        setOverHero(false);
+        return;
+      }
+      setOverHero(hero.getBoundingClientRect().bottom > 72);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     setOpen(false);
@@ -51,23 +65,21 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-colors duration-300",
-        scrolled || open
-          ? "border-navy/10 bg-ivory/95 backdrop-blur-md"
-          : "border-navy/5 bg-ivory",
+        "fixed top-0 z-50 w-full transition-colors duration-300",
+        merged ? "bg-transparent" : "bg-ink",
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-4 sm:h-[4.5rem] lg:h-[5rem]">
+      <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link
           href="/"
-          className="relative z-10 max-w-[42vw] shrink-0 focus-visible:outline-none sm:max-w-none"
+          className="relative z-[60] max-w-[58vw] shrink-0 focus-visible:outline-none sm:max-w-none"
           aria-label={`${siteConfig.name} home`}
         >
-          <Logo priority />
+          <Logo priority tone="light" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-          {navLinks.map((link) => {
+          {headerLinks.map((link) => {
             const active =
               link.href === "/"
                 ? pathname === "/"
@@ -77,15 +89,15 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative px-3.5 py-2 text-[12px] font-medium tracking-[0.04em] text-muted transition-colors hover:text-navy",
-                  active && "text-navy",
+                  "group relative px-3.5 py-2 text-[13px] transition-colors",
+                  active ? "text-paper" : "text-paper/75 hover:text-paper",
                 )}
               >
                 {link.label}
                 <span
                   className={cn(
-                    "absolute inset-x-3.5 bottom-1 h-px bg-sage transition-opacity duration-300",
-                    active ? "opacity-100" : "opacity-0",
+                    "absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-copper transition-transform duration-300",
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                   )}
                 />
               </Link>
@@ -94,14 +106,21 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:block">
-          <Button href="/contact" className="!px-5 !py-3 text-[10px]">
-            Book a Consultation
+          <Button
+            href="/contact"
+            variant="outlineLight"
+            className="!px-5 !py-2.5"
+          >
+            Let&apos;s Talk
           </Button>
         </div>
 
         <button
           type="button"
-          className="relative flex h-11 w-11 items-center justify-center text-navy lg:hidden"
+          className={cn(
+            "relative z-[60] flex h-12 w-12 items-center justify-center lg:hidden",
+            "text-paper",
+          )}
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -109,20 +128,20 @@ export function Header() {
         >
           <span
             className={cn(
-              "absolute h-[1.5px] w-5 bg-current transition-all duration-300",
-              open ? "translate-y-0 rotate-45" : "-translate-y-[4px]",
+              "absolute h-px w-6 bg-current transition-all duration-300",
+              open ? "translate-y-0 rotate-45" : "-translate-y-[6px]",
             )}
           />
           <span
             className={cn(
-              "absolute h-[1.5px] w-5 bg-current transition-all duration-300",
+              "absolute h-px w-6 bg-current transition-all duration-300",
               open ? "opacity-0" : "opacity-100",
             )}
           />
           <span
             className={cn(
-              "absolute h-[1.5px] w-5 bg-current transition-all duration-300",
-              open ? "translate-y-0 -rotate-45" : "translate-y-[4px]",
+              "absolute h-px w-6 bg-current transition-all duration-300",
+              open ? "translate-y-0 -rotate-45" : "translate-y-[6px]",
             )}
           />
         </button>
@@ -132,14 +151,17 @@ export function Header() {
         {open ? (
           <motion.div
             id="mobile-nav"
-            className="border-t border-navy/10 bg-ivory lg:hidden"
-            initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-50 bg-ink text-paper lg:hidden"
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduceMotion ? undefined : { opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <nav className="flex flex-col px-5 py-4" aria-label="Mobile">
-              {navLinks.map((link) => {
+            <nav
+              className="flex h-full flex-col px-6 pb-10 pt-[calc(var(--header-h)+2rem)]"
+              aria-label="Mobile"
+            >
+              {headerLinks.map((link, index) => {
                 const active =
                   link.href === "/"
                     ? pathname === "/"
@@ -150,20 +172,26 @@ export function Header() {
                     href={link.href}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      "border-b border-soft py-4 text-base font-medium text-navy",
-                      active && "text-sage-deep",
+                      "flex items-baseline gap-4 border-t border-white/10 py-5",
+                      active ? "text-paper" : "text-paper/70",
                     )}
                   >
-                    {link.label}
+                    <span className="font-display text-sm text-copper">
+                      0{index + 1}
+                    </span>
+                    <span className="font-display text-5xl leading-none">
+                      {link.label}
+                    </span>
                   </Link>
                 );
               })}
               <Button
                 href="/contact"
-                className="mt-5 w-full"
+                variant="outlineLight"
+                className="mt-10 w-full"
                 onClick={() => setOpen(false)}
               >
-                Book a Consultation
+                Let&apos;s Talk
               </Button>
             </nav>
           </motion.div>

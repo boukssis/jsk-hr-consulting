@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import type { ServiceSection } from "@/data/services";
 import { Container } from "@/components/ui/Container";
@@ -11,63 +10,70 @@ export function ServiceIndex({ sections }: { sections: ServiceSection[] }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      id="services-directory"
-      className="scroll-target border-b border-navy/8 bg-white py-12 sm:py-16"
-    >
+    <section className="bg-paper py-12 sm:py-16">
       <Container>
-        <div className="mb-8 flex flex-col gap-2 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage-deep">
-              Jump to a focus area
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-copper">
+              Practice areas
             </p>
-            <h2 className="mt-2 font-display text-[clamp(1.7rem,3vw,2.4rem)] leading-tight text-navy">
-              Choose where to start.
+            <h2 className="mt-2 font-display text-[clamp(1.9rem,3.4vw,2.8rem)] text-ink">
+              Choose a focus. Jump straight in.
             </h2>
           </div>
-          <p className="max-w-xs text-sm text-muted">
-            Tap any area to scroll straight to it.
-          </p>
+          <p className="max-w-xs text-sm text-muted">Eight areas. One conversation.</p>
         </div>
 
-        <nav aria-label="Service directory">
-          <ul className="grid gap-px overflow-hidden border border-navy/10 bg-navy/10 sm:grid-cols-2 lg:grid-cols-4">
-            {sections.map((section, index) => (
-              <motion.li
-                key={section.id}
-                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{
-                  delay: reduceMotion ? 0 : 0.03 * index,
-                  duration: 0.4,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <Link
-                  href={`#${section.id}`}
-                  className={cn(
-                    "group flex h-full min-h-[132px] flex-col justify-between bg-white p-5 transition-all duration-300",
-                    "hover:bg-navy active:scale-[0.99] sm:min-h-[148px] sm:p-6",
-                  )}
+        <nav aria-label="Service map">
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {sections.map((section, index) => {
+              const featured = index === 0;
+              return (
+                <motion.li
+                  key={section.id}
+                  className={featured ? "sm:col-span-2" : undefined}
+                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: reduceMotion ? 0 : 0.04 * index, duration: 0.45 }}
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <span className="font-display text-2xl leading-none text-sage transition group-hover:text-sage">
-                      {section.number}
-                    </span>
-                    <ArrowDownRight className="h-4 w-4 shrink-0 text-navy/30 transition group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:text-sage" />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg leading-snug text-navy transition group-hover:text-ivory sm:text-xl">
-                      {section.title}
-                    </h3>
-                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted transition group-hover:text-ivory/65">
-                      {section.summary}
-                    </p>
-                  </div>
-                </Link>
-              </motion.li>
-            ))}
+                  <a
+                    href={`#${section.id}`}
+                    className={cn(
+                      "group relative flex h-full min-h-[150px] flex-col justify-between overflow-hidden p-5 transition-colors duration-300 sm:min-h-[180px] sm:p-6",
+                      featured
+                        ? "bg-ink text-paper hover:bg-sage-deep"
+                        : "bg-ivory text-ink hover:bg-ink hover:text-paper",
+                    )}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <span
+                        className={cn(
+                          "font-display text-3xl leading-none",
+                          featured ? "text-copper" : "text-copper group-hover:text-copper",
+                        )}
+                      >
+                        {section.number}
+                      </span>
+                      <ArrowUpRight className="h-4 w-4 opacity-50 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-2xl leading-tight">{section.title}</h3>
+                      <p
+                        className={cn(
+                          "mt-2 max-w-sm text-sm leading-relaxed",
+                          featured
+                            ? "text-paper/65"
+                            : "text-muted group-hover:text-paper/65",
+                        )}
+                      >
+                        {section.summary}
+                      </p>
+                    </div>
+                  </a>
+                </motion.li>
+              );
+            })}
           </ul>
         </nav>
       </Container>

@@ -21,35 +21,21 @@ export default function ServicesPage() {
         eyebrow="Services"
         title={
           <>
-            Better people strategy.
-            <br />
-            <span className="font-display-italic text-sage">
-              Better business decisions.
-            </span>
+            Counsel for the
+            <span className="font-display-italic text-copper"> moments </span>
+            that matter.
           </>
         }
-        description="Eight focused areas. Clear guidance. People first."
+        description="Eight practice areas. Scan the map, then go straight to the work you need."
       />
-
       <ServiceIndex sections={serviceSections} />
-
-      {serviceSections.map((section) => (
-        <ServiceEditorial
-          key={section.id}
-          section={section}
-          total={serviceSections.length}
-        />
+      {serviceSections.map((section, index) => (
+        <ServiceEditorial key={section.id} section={section} index={index} />
       ))}
-
       <CTABanner
-        title={
-          <>
-            Ready to talk through
-            <br />
-            your priorities?
-          </>
-        }
-        buttonLabel="Request a Consultation"
+        title="Tell us what needs attention."
+        description="A short conversation is the right place to start."
+        buttonLabel="Let's Talk"
       />
     </>
   );

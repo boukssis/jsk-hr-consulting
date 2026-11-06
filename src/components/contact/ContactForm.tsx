@@ -128,7 +128,7 @@ export function ContactForm() {
   }
 
   const inputClass =
-    "w-full border border-ink/15 bg-white px-4 py-3.5 text-sm text-ink outline-none transition placeholder:text-muted/50 focus:border-forest focus:ring-2 focus:ring-forest/15";
+    "w-full border border-ink/15 bg-paper px-4 py-3.5 text-sm text-ink outline-none transition placeholder:text-muted/45 focus:border-copper focus:ring-2 focus:ring-copper/15";
 
   return (
     <form onSubmit={onSubmit} noValidate className="relative space-y-5">
@@ -167,7 +167,7 @@ export function ContactForm() {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field id="workEmail" label="Email" required error={errors.workEmail}>
+        <Field id="workEmail" label="Work email" required error={errors.workEmail}>
           <input
             id="workEmail"
             name="workEmail"
@@ -195,7 +195,7 @@ export function ContactForm() {
 
       <Field
         id="serviceInterest"
-        label="Service Interested In"
+        label="Service of interest"
         required
         error={errors.serviceInterest}
       >
@@ -219,7 +219,7 @@ export function ContactForm() {
         </select>
       </Field>
 
-      <Field id="message" label="Message" required error={errors.message}>
+      <Field id="message" label="Brief message" required error={errors.message}>
         <textarea
           id="message"
           name="message"
@@ -300,7 +300,7 @@ function Field({
         className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.16em] text-ink"
       >
         {label}
-        {required ? <span className="text-forest"> *</span> : null}
+        {required ? <span className="text-copper"> *</span> : null}
       </label>
       {children}
       {error ? (

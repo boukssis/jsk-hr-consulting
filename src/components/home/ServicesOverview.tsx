@@ -1,125 +1,54 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
-import { homepageServices } from "@/data/services";
-import { Button } from "@/components/ui/Button";
+import { featuredServices } from "@/data/services";
 import { Container } from "@/components/ui/Container";
-import { cn } from "@/lib/cn";
-
-const shortLines: Record<string, string> = {
-  "strategic-hr": "People strategy that fits how you grow.",
-  "leadership-development": "Stronger leaders. Clearer teams.",
-  "talent-acquisition": "Find and shape the talent you need.",
-  "employee-relations": "Fair, steady workplace guidance.",
-  "organizational-change": "Navigate change with confidence.",
-  "career-transition": "Move forward with clarity.",
-};
 
 export function ServicesOverview() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-ivory py-16 sm:py-24">
       <Container>
-        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sage-deep">
-              What we do
-            </p>
-            <h2 className="mt-3 max-w-lg font-display text-[clamp(1.9rem,4vw,3rem)] leading-[1.08] text-navy">
-              Clear services.{" "}
-              <span className="font-display-italic text-sage">Real impact.</span>
-            </h2>
-          </div>
-          <Button href="/services" variant="outlineDark" className="!px-5 !py-3 self-start sm:self-auto">
-            View all services
-          </Button>
+        <div className="mb-8 max-w-2xl sm:mb-12">
+          <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-copper">
+            Expertise
+          </p>
+          <h2 className="mt-4 font-display text-[clamp(2.1rem,4vw,3.4rem)] leading-[1.05] text-ink">
+            Expert guidance for the moments that matter.
+          </h2>
         </div>
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {homepageServices.map((service, index) => {
-            const featured = index === 0;
-            return (
-              <motion.div
-                key={service.id}
-                className={featured ? "sm:col-span-2 lg:col-span-1" : undefined}
-                initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{
-                  delay: reduceMotion ? 0 : 0.05 * index,
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+        <ul className="border-t border-ink/15">
+          {featuredServices.map((service, index) => (
+            <motion.li
+              key={service.id}
+              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: reduceMotion ? 0 : index * 0.04, duration: 0.45 }}
+            >
+              <Link
+                href={service.href}
+                className="group relative grid grid-cols-[auto_1fr_auto] items-start gap-x-4 gap-y-2 border-b border-ink/15 py-5 transition-colors duration-300 hover:bg-ink hover:text-paper sm:grid-cols-[4.5rem_minmax(0,1.15fr)_minmax(0,0.95fr)_auto] sm:items-center sm:gap-x-8 sm:px-4 sm:py-7"
               >
-                <Link
-                  href={service.href}
-                  className={cn(
-                    "group relative flex h-full min-h-[180px] flex-col justify-between overflow-hidden border p-6 transition-all duration-300",
-                    "hover:-translate-y-1 active:translate-y-0 active:scale-[0.99]",
-                    featured
-                      ? "border-navy bg-navy text-ivory hover:border-sage hover:shadow-[0_24px_48px_-20px_rgba(8,32,48,0.55)]"
-                      : "border-navy/10 bg-ivory hover:border-sage hover:bg-navy hover:shadow-[0_20px_40px_-24px_rgba(8,32,48,0.55)]",
-                  )}
-                >
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={cn(
-                        "font-display text-3xl leading-none",
-                        featured ? "text-sage" : "text-sage group-hover:text-sage",
-                      )}
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span
-                      className={cn(
-                        "flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300",
-                        featured
-                          ? "border-sage/40 text-sage group-hover:border-sage group-hover:bg-sage group-hover:text-navy"
-                          : "border-navy/10 text-navy group-hover:border-sage group-hover:bg-sage group-hover:text-navy",
-                      )}
-                    >
-                      <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </span>
-                  </div>
-
-                  <div className="mt-8">
-                    <h3
-                      className={cn(
-                        "font-display text-xl leading-snug sm:text-[1.4rem]",
-                        featured
-                          ? "text-ivory"
-                          : "text-navy transition group-hover:text-ivory",
-                      )}
-                    >
-                      {service.title}
-                    </h3>
-                    <p
-                      className={cn(
-                        "mt-2 text-sm leading-relaxed",
-                        featured
-                          ? "text-ivory/65"
-                          : "text-muted transition group-hover:text-ivory/70",
-                      )}
-                    >
-                      {shortLines[service.id] ?? service.description}
-                    </p>
-                  </div>
-
-                  <span
-                    className={cn(
-                      "pointer-events-none absolute bottom-0 left-0 h-1 bg-sage transition-all duration-500",
-                      featured ? "w-full" : "w-0 group-hover:w-full",
-                    )}
-                    aria-hidden
-                  />
-                </Link>
-              </motion.div>
-            );
-          })}
-        </div>
+                <span className="font-display text-xl text-copper sm:text-2xl">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-[1.35rem] leading-tight text-ink transition-colors group-hover:text-paper sm:text-[1.65rem]">
+                  {service.title}
+                </span>
+                <span className="col-span-2 col-start-2 text-sm leading-relaxed text-muted transition-colors group-hover:text-paper/65 sm:col-span-1 sm:col-start-3">
+                  {service.summary}
+                </span>
+                <ArrowRight className="mt-1 h-4 w-4 text-ink/35 transition-all duration-300 group-hover:translate-x-1 group-hover:text-copper sm:mt-0" />
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-copper transition-transform duration-500 group-hover:scale-x-100" />
+              </Link>
+            </motion.li>
+          ))}
+        </ul>
       </Container>
     </section>
   );

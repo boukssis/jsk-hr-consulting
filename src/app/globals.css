@@ -1,33 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  /* Extracted from JSK logo artwork */
-  --navy: #082030;
-  --sage: #6b8f5e;
-  --sage-deep: #607850;
-  --deep: #334d40;
-  --ivory: #fafaf7;
-  --soft: #e8eee6;
-  --charcoal: #18272b;
-  --muted: #5e6f68;
-  --white: #ffffff;
-  --ink: var(--navy);
-  --forest: var(--sage);
+  /* Logo navy, warmed into an editorial palette */
+  --navy: #1c282e;
+  --ink: #202b31;
+  --charcoal: #202b31;
+  --sage: #7e8e78;
+  --sage-deep: #40594b;
+  --deep: #31463c;
+  --copper: #b77d5d;
+  --taupe: #a59786;
+  --ivory: #f7f5f0;
+  --paper: #fdfcfa;
+  --soft: #e4e9e1;
+  --muted: #5c675f;
+  --white: #fdfcfa;
+  --forest: var(--sage-deep);
   --stone: var(--soft);
-  --background: var(--ivory);
-  --foreground: var(--charcoal);
-  --header-h: 4rem;
-}
-
-@media (min-width: 640px) {
-  :root {
-    --header-h: 4.5rem;
-  }
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --header-h: 5.25rem;
 }
 
 @media (min-width: 1024px) {
   :root {
-    --header-h: 5rem;
+    --header-h: 5.75rem;
   }
 }
 
@@ -36,7 +33,10 @@
   --color-sage: var(--sage);
   --color-sage-deep: var(--sage-deep);
   --color-deep: var(--deep);
+  --color-copper: var(--copper);
+  --color-taupe: var(--taupe);
   --color-ivory: var(--ivory);
+  --color-paper: var(--paper);
   --color-soft: var(--soft);
   --color-charcoal: var(--charcoal);
   --color-muted: var(--muted);
@@ -45,10 +45,11 @@
   --color-stone: var(--stone);
   --color-sand: var(--soft);
   --color-slate: var(--muted);
+  --color-white: var(--white);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-manrope);
-  --font-display: var(--font-instrument);
+  --font-display: var(--font-display-face);
 }
 
 * {
@@ -67,47 +68,76 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-instrument), Georgia, "Times New Roman", serif;
+  font-family: var(--font-display-face), Georgia, "Times New Roman", serif;
+  font-weight: 400;
 }
 
 .font-display-italic {
-  font-family: var(--font-instrument), Georgia, "Times New Roman", serif;
+  font-family: var(--font-display-face), Georgia, "Times New Roman", serif;
   font-style: italic;
+  font-weight: 400;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--sage) 40%, white);
-  color: var(--navy);
+  background: color-mix(in srgb, var(--copper) 28%, white);
+  color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--sage);
+  outline: 2px solid var(--copper);
   outline-offset: 3px;
 }
 
 .hero-grid {
   background-image:
-    linear-gradient(to right, rgba(8, 32, 48, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(8, 32, 48, 0.04) 1px, transparent 1px);
-  background-size: 80px 80px;
+    linear-gradient(to right, rgba(253, 252, 250, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(253, 252, 250, 0.06) 1px, transparent 1px);
+  background-size: 88px 88px;
+}
+
+.hero-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(32, 43, 49, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(32, 43, 49, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.portrait-photo {
+  filter: saturate(0.55) contrast(1.12) brightness(0.96) hue-rotate(-18deg);
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 22s ease-out forwards;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
 }
 
 .scroll-target {
   scroll-margin-top: calc(var(--header-h) + 1.25rem);
 }
 
-.btn-interactive {
-  transform: translateZ(0);
-}
-
-@keyframes float-soft {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+.rule-draw {
+  transform-origin: left center;
 }
 
 @keyframes draw-line {
@@ -117,22 +147,6 @@ body {
   to {
     stroke-dashoffset: 0;
   }
-}
-
-@keyframes pulse-ring {
-  0%,
-  100% {
-    opacity: 0.28;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.48;
-    transform: scale(1.025);
-  }
-}
-
-.animate-float-soft {
-  animation: float-soft 10s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -146,9 +160,5 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .btn-interactive:hover {
-    transform: none;
   }
 }

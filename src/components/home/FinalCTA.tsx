@@ -3,15 +3,15 @@ import { CTABanner } from "@/components/shared/CTABanner";
 export function FinalCTA() {
   return (
     <CTABanner
-      eyebrow="Begin"
       title={
         <>
-          Let&apos;s make your next
-          <br />
-          people decision count.
+          Let&apos;s talk about the
+          <span className="font-display-italic text-copper"> people decisions </span>
+          ahead.
         </>
       }
-      buttonLabel="Start a Conversation"
+      description="A first conversation is enough to see whether JSK is the right fit."
+      buttonLabel="Let's Talk"
     />
   );
 }

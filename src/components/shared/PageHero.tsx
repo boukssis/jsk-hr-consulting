@@ -1,4 +1,3 @@
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
@@ -16,7 +15,7 @@ export function PageHero({
   eyebrow,
   title,
   description,
-  tone = "light",
+  tone = "dark",
   align = "left",
   aside,
 }: PageHeroProps) {
@@ -24,40 +23,47 @@ export function PageHero({
 
   return (
     <section
+      id={isDark ? "site-hero" : undefined}
       className={cn(
-        "relative overflow-hidden border-b",
-        tone === "light" && "border-ink/10 bg-ivory",
-        tone === "dark" && "border-transparent bg-navy",
-        tone === "forest" && "border-transparent bg-deep",
+        "relative overflow-hidden",
+        isDark
+          ? "-mt-[var(--header-h)] bg-ink pt-[var(--header-h)] text-paper"
+          : "bg-paper",
       )}
     >
-      <div className="pointer-events-none absolute inset-0 hero-grid opacity-60" />
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-0",
+          isDark ? "hero-grid opacity-30" : "hero-grid-light opacity-80",
+        )}
+      />
       <Container
         className={cn(
-          "relative py-16 sm:py-20 lg:py-24",
-          align === "split" && "grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end",
+          "relative grid gap-8 py-16 sm:py-20 lg:py-24",
+          align === "split" && "lg:grid-cols-[1.2fr_0.8fr] lg:items-end",
+          align === "left" &&
+            "lg:grid-cols-[minmax(0,1.2fr)_minmax(16rem,0.7fr)] lg:items-end",
         )}
       >
         <Reveal>
-          <Eyebrow light={isDark}>{eyebrow}</Eyebrow>
-          <h1
-            className={cn(
-              "mt-5 max-w-4xl font-display text-[clamp(2.4rem,6vw,4.5rem)] leading-[1.02] tracking-[-0.025em]",
-              isDark ? "text-ivory" : "text-ink",
-            )}
-          >
+          <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-copper">
+            {eyebrow}
+          </p>
+          <h1 className="mt-4 max-w-4xl font-display text-[clamp(2.6rem,6vw,5rem)] leading-[0.96] tracking-[-0.03em]">
             {title}
           </h1>
+        </Reveal>
+        <Reveal delay={0.08}>
           <p
             className={cn(
-              "mt-5 max-w-xl text-base leading-relaxed sm:text-lg",
-              isDark ? "text-ivory/70" : "text-muted",
+              "max-w-md text-base leading-relaxed sm:text-lg",
+              isDark ? "text-paper/70" : "text-muted",
             )}
           >
             {description}
           </p>
+          {aside}
         </Reveal>
-        {aside ? <Reveal delay={0.1}>{aside}</Reveal> : null}
       </Container>
     </section>
   );

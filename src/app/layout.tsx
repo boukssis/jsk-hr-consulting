@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Manrope } from "next/font/google";
+import { DM_Serif_Display, Manrope } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { siteConfig } from "@/lib/site";
@@ -11,8 +11,8 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
+const display = DM_Serif_Display({
+  variable: "--font-display-face",
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#082030",
+  themeColor: "#202B31",
   width: "device-width",
   initialScale: 1,
 };
@@ -73,11 +73,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${instrument.variable} h-full antialiased`}
+      className={`${manrope.variable} ${display.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ivory text-ink">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pt-[var(--header-h)]">{children}</main>
         <Footer />
       </body>
     </html>

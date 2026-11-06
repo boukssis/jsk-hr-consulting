@@ -33,6 +33,8 @@ export const navLinks = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+export const headerLinks = navLinks.filter((link) => link.href !== "/contact");
+
 export const serviceInterestOptions = [
   "HR Advisory",
   "Leadership Development",
@@ -44,9 +46,8 @@ export const serviceInterestOptions = [
 ] as const;
 
 export const expertiseStrip = [
-  "Strategic HR",
+  "HR Strategy",
   "Leadership",
   "Employee Relations",
-  "Workforce Planning",
   "Organizational Change",
 ] as const;
