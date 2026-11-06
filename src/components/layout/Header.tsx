@@ -17,6 +17,7 @@ export function Header() {
   const [overHero, setOverHero] = useState(pathname === "/");
   const [atTop, setAtTop] = useState(true);
   const merged = overHero && atTop && !open;
+  const lightBar = !merged && !open;
 
   useEffect(() => {
     const onScroll = () => {
@@ -66,7 +67,11 @@ export function Header() {
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-colors duration-300",
-        merged ? "bg-transparent" : "bg-ink",
+        merged
+          ? "bg-transparent"
+          : lightBar
+            ? "border-b border-ink/10 bg-ivory"
+            : "bg-ink",
       )}
     >
       <Container className="flex h-[var(--header-h)] items-center justify-between gap-6">
@@ -75,7 +80,7 @@ export function Header() {
           className="relative z-[60] max-w-[58vw] shrink-0 focus-visible:outline-none sm:max-w-none"
           aria-label={`${siteConfig.name} home`}
         >
-          <Logo priority tone="light" />
+          <Logo priority tone={lightBar ? "dark" : "light"} />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -90,7 +95,13 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   "group relative px-3.5 py-2 text-[13px] transition-colors",
-                  active ? "text-paper" : "text-paper/75 hover:text-paper",
+                  lightBar
+                    ? active
+                      ? "text-ink"
+                      : "text-muted hover:text-ink"
+                    : active
+                      ? "text-paper"
+                      : "text-paper/75 hover:text-paper",
                 )}
               >
                 {link.label}
@@ -108,7 +119,7 @@ export function Header() {
         <div className="hidden lg:block">
           <Button
             href="/contact"
-            variant="outlineLight"
+            variant={lightBar ? "primary" : "outlineLight"}
             className="!px-5 !py-2.5"
           >
             Let&apos;s Talk
@@ -119,7 +130,7 @@ export function Header() {
           type="button"
           className={cn(
             "relative z-[60] flex h-12 w-12 items-center justify-center lg:hidden",
-            "text-paper",
+            lightBar ? "text-ink" : "text-paper",
           )}
           aria-expanded={open}
           aria-controls="mobile-nav"
