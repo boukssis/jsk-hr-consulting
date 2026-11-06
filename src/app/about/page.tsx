@@ -41,6 +41,7 @@ export default function AboutPage() {
     <>
       <section
         id="site-hero"
+        data-hero="dark"
         className="relative -mt-[var(--header-h)] overflow-hidden bg-ink pt-[var(--header-h)] text-paper"
       >
         <div className="pointer-events-none absolute inset-0 hero-grid opacity-30" />

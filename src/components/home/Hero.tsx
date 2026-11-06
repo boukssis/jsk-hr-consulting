@@ -212,6 +212,7 @@ export function Hero() {
   return (
     <section
       id="site-hero"
+      data-hero="light"
       className="relative -mt-[var(--header-h)] min-h-[calc(72svh+var(--header-h))] overflow-hidden bg-ivory text-ink"
     >
       <Image

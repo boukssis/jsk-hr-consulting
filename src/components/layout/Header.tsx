@@ -14,11 +14,19 @@ export function Header() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
-  const [overHero, setOverHero] = useState(pathname === "/");
+  const startsOnHero =
+    pathname === "/" ||
+    pathname.startsWith("/services") ||
+    pathname.startsWith("/about") ||
+    pathname.startsWith("/industries");
+  const [overHero, setOverHero] = useState(startsOnHero);
+  const [heroTone, setHeroTone] = useState<"light" | "dark">(
+    pathname === "/" ? "light" : "dark",
+  );
   const [atTop, setAtTop] = useState(true);
   const merged = overHero && atTop && !open;
   const lightBar = !merged && !open;
-  const onLight = !open;
+  const onDark = open || (merged && heroTone === "dark");
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,6 +37,7 @@ export function Header() {
         return;
       }
       setOverHero(hero.getBoundingClientRect().bottom > 72);
+      setHeroTone(hero.dataset.hero === "dark" ? "dark" : "light");
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -81,7 +90,7 @@ export function Header() {
           className="relative z-[60] max-w-[58vw] shrink-0 focus-visible:outline-none sm:max-w-none"
           aria-label={`${siteConfig.name} home`}
         >
-          <Logo priority tone={onLight ? "dark" : "light"} />
+          <Logo priority tone={onDark ? "light" : "dark"} />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -96,13 +105,13 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   "group relative px-3.5 py-2 text-[13px] transition-colors",
-                  onLight
+                  onDark
                     ? active
-                      ? "text-ink"
-                      : "text-muted hover:text-ink"
-                    : active
                       ? "text-paper"
-                      : "text-paper/75 hover:text-paper",
+                      : "text-paper/75 hover:text-paper"
+                    : active
+                      ? "text-ink"
+                      : "text-muted hover:text-ink",
                 )}
               >
                 {link.label}
@@ -120,7 +129,7 @@ export function Header() {
         <div className="hidden lg:block">
           <Button
             href="/contact"
-            variant={onLight ? "primary" : "outlineLight"}
+            variant={onDark ? "outlineLight" : "primary"}
             className="!px-5 !py-2.5"
           >
             Let&apos;s Talk
@@ -131,7 +140,7 @@ export function Header() {
           type="button"
           className={cn(
             "relative z-[60] flex h-12 w-12 items-center justify-center lg:hidden",
-            onLight ? "text-ink" : "text-paper",
+            onDark ? "text-paper" : "text-ink",
           )}
           aria-expanded={open}
           aria-controls="mobile-nav"

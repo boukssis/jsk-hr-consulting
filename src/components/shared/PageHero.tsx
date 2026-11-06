@@ -24,6 +24,7 @@ export function PageHero({
   return (
     <section
       id={isDark ? "site-hero" : undefined}
+      data-hero={isDark ? "dark" : "light"}
       className={cn(
         "relative overflow-hidden",
         isDark
